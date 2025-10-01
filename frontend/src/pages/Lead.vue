@@ -311,7 +311,7 @@ watch(
       document._statuses = s.statuses || []
     }
   },
-  { once: true }
+  { once: true },
 )
 
 const breadcrumbs = computed(() => {
