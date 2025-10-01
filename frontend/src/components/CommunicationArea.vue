@@ -1,16 +1,6 @@
 <template>
-  <div class="flex justify-between gap-3 border-t px-4 py-2.5 sm:px-10">
+  <div class="flex justify-between gap-3 px-4 sm:px-10 py-2.5 border-t">
     <div class="flex gap-1.5">
-      <Button
-        ref="sendEmailRef"
-        variant="ghost"
-        :class="[
-          showEmailBox ? '!bg-surface-gray-4 hover:!bg-surface-gray-3' : '',
-        ]"
-        :label="__('Reply')"
-        :iconLeft="Email2Icon"
-        @click="toggleEmailBox()"
-      />
       <Button
         variant="ghost"
         :label="__('Comment')"
@@ -170,7 +160,7 @@ watch(
       editor.commands.focus()
       setSignature(editor)
     }
-  },
+  }
 )
 
 watch(
@@ -179,7 +169,7 @@ watch(
     if (value) {
       newCommentEditor.value.editor.commands.focus()
     }
-  },
+  }
 )
 
 const commentEmpty = computed(() => {
