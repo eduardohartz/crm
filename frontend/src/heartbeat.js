@@ -1,11 +1,12 @@
 import { frappeRequest } from 'frappe-ui'
 
-const INTERVAL = 15000 // 15 seconds
+const INTERVAL = 15000
 
 async function sendHeartbeat() {
   try {
     await frappeRequest({
-      method: 'crm.heartbeat.ping',
+      url: '/api/method/crm.crm.api.heartbeat.ping',
+      method: 'POST',
     })
   } catch (err) {
     console.warn('Heartbeat failed:', err)
