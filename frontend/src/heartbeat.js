@@ -1,17 +1,18 @@
-export function startHeartbeat() {
-  const INTERVAL = 15000
+import { frappeRequest } from 'frappe-ui'
 
-  async function ping() {
-    try {
-      await frappe.call({
-        method: 'crm.heartbeat.ping',
-        freeze: false,
-      })
-    } catch (e) {
-      console.warn('Heartbeat error:', e)
-    }
+const INTERVAL = 15000 // 15 seconds
+
+async function sendHeartbeat() {
+  try {
+    await frappeRequest({
+      method: 'crm.heartbeat.ping',
+    })
+  } catch (err) {
+    console.warn('Heartbeat failed:', err)
   }
+}
 
-  setInterval(ping, INTERVAL)
-  ping()
+export function startHeartbeat() {
+  sendHeartbeat()
+  setInterval(sendHeartbeat, INTERVAL)
 }
