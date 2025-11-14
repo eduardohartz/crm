@@ -317,6 +317,3 @@ standard_dropdown_items = [
 		"is_standard": 1,
 	},
 ]
-
-
-app_include_js = ["crm/public/js/heartbeat.js"]
