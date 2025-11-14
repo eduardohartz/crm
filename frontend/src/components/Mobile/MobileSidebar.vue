@@ -118,11 +118,6 @@ const links = [
     to: 'Dashboard',
   },
   {
-    label: 'Leads',
-    icon: LeadsIcon,
-    to: 'Leads',
-  },
-  {
     label: 'Notes',
     icon: NoteIcon,
     to: 'Notes',

@@ -322,7 +322,7 @@ import {
   FeatherIcon,
   usePageMeta,
 } from 'frappe-ui'
-import { computed, ref, onMounted, watch, h, markRaw } from 'vue'
+import { computed, ref, onMounted, onBeforeUnmount, watch, h, markRaw } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useDebounceFn } from '@vueuse/core'
 import { isMobileView } from '@/composables/settings'
@@ -533,15 +533,82 @@ list.value = createResource({
   },
 })
 
-onMounted(() => useDebounceFn(reload, 100)())
+onMounted(() => {
+  useDebounceFn(reload, 100)()
+  startAutoRefresh()
+})
 
 const isLoading = computed(() => list.value?.loading)
+const previousTotalCount = ref(null)
+const autoRefreshInterval = ref(null)
 
 function reload() {
   if (isLoading.value) return
   list.value.params = getParams()
   list.value.reload()
 }
+
+function startAutoRefresh() {
+  autoRefreshInterval.value = setInterval(() => {
+    if (isLoading.value) return
+    
+    list.value.params = getParams()
+    list.value.reload().then(() => {
+      const newCount = list.value?.data?.total_count
+      
+      if (previousTotalCount.value !== null && newCount > previousTotalCount.value) {
+        const newEntries = newCount - previousTotalCount.value
+        playNotificationSound()
+        toast.success(__('New entries detected: {0}', [newEntries]))
+      }
+      
+      previousTotalCount.value = newCount
+    })
+  }, 15000) // 15 seconds
+  
+  // Set initial count
+  if (list.value?.data?.total_count !== undefined) {
+    previousTotalCount.value = list.value.data.total_count
+  }
+}
+
+function playNotificationSound() {
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+  const now = audioContext.currentTime
+  
+  const createTone = (frequency, startTime, duration, peakGain) => {
+    const oscillator = audioContext.createOscillator()
+    const gainNode = audioContext.createGain()
+    
+    oscillator.connect(gainNode)
+    gainNode.connect(audioContext.destination)
+    
+    oscillator.frequency.value = frequency
+    oscillator.type = 'sine'
+    
+    gainNode.gain.setValueAtTime(0, startTime)
+    gainNode.gain.linearRampToValueAtTime(peakGain, startTime + 0.05)
+    gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + duration)
+    
+    oscillator.start(startTime)
+    oscillator.stop(startTime + duration)
+  }
+
+  createTone(523.25, now, 0.15, 0.8)        // C5
+  createTone(659.25, now, 0.15, 0.6)        // E5
+  createTone(783.99, now, 0.15, 0.5)        // G5
+  
+  createTone(1046.50, now + 0.12, 0.2, 1.0) // C6 (peak volume - max)
+  createTone(1318.51, now + 0.12, 0.2, 0.7) // E6
+  
+  createTone(1567.98, now + 0.25, 0.3, 0.4) // G6 (sparkle)
+}
+
+onBeforeUnmount(() => {
+  if (autoRefreshInterval.value) {
+    clearInterval(autoRefreshInterval.value)
+  }
+})
 
 const showExportDialog = ref(false)
 const export_type = ref('Excel')
