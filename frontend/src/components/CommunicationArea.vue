@@ -44,7 +44,7 @@
       :doctype="doctype"
       :subject="subject"
       :placeholder="
-        __('Hi John, \n\nCan you please provide more details on this...')
+        `Escreva seu email aqui...`
       "
     />
   </div>

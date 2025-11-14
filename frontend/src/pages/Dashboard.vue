@@ -33,7 +33,7 @@
         <Button
           v-if="editing"
           variant="solid"
-          :label="__('Save')"
+          :label="'Salvar'"
           :disabled="!dirty"
           :loading="saveDashboard.loading"
           @click="save"
@@ -41,7 +41,7 @@
       </template>
     </LayoutHeader>
 
-    <div class="p-5 pb-2 flex items-center gap-4">
+    <div class="flex items-center gap-4 p-5 pb-2">
       <Dropdown
         v-if="!showDatePicker"
         :options="options"
@@ -79,12 +79,12 @@
         :formatter="formatRange"
       >
         <template #prefix>
-          <LucideCalendar class="size-4 text-ink-gray-5 mr-2" />
+          <LucideCalendar class="mr-2 size-4 text-ink-gray-5" />
         </template>
       </DateRangePicker>
       <Link
         v-if="isAdmin() || isManager()"
-        class="form-control w-48"
+        class="w-48 form-control"
         variant="outline"
         :value="filters.user && getUser(filters.user).full_name"
         doctype="User"

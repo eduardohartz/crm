@@ -1,18 +1,18 @@
 <template>
-  <div class="flex h-full flex-col gap-6 px-6 py-8 text-ink-gray-8">
+  <div class="flex flex-col gap-6 px-6 py-8 h-full text-ink-gray-8">
     <!-- Header -->
     <div class="flex justify-between px-2 text-ink-gray-8">
       <div class="flex flex-col gap-1">
-        <h2 class="flex gap-2 text-xl font-semibold leading-none h-5">
+        <h2 class="flex gap-2 h-5 font-semibold text-xl leading-none">
           {{ __('Currency & Exchange rate provider') }}
         </h2>
-        <p class="text-p-base text-ink-gray-6">
+        <p class="text-ink-gray-6 text-p-base">
           {{
             __('Configure the currency and exchange rate provider for your CRM')
           }}
         </p>
       </div>
-      <div class="flex item-center space-x-2 w-3/12 justify-end">
+      <div class="flex justify-end space-x-2 w-3/12 item-center">
         <Button
           :label="__('Update')"
           variant="solid"
@@ -24,13 +24,13 @@
     </div>
 
     <!-- Fields -->
-    <div class="flex flex-1 flex-col overflow-y-auto">
-      <div class="flex items-center justify-between gap-8 py-3 px-2">
+    <div class="flex flex-col flex-1 overflow-y-auto">
+      <div class="flex justify-between items-center gap-8 px-2 py-3">
         <div class="flex flex-col">
-          <div class="text-p-base font-medium text-ink-gray-7 truncate">
+          <div class="font-medium text-ink-gray-7 text-p-base truncate">
             {{ __('Currency') }}
           </div>
-          <div class="text-p-sm text-ink-gray-5">
+          <div class="text-ink-gray-5 text-p-sm">
             {{
               __(
                 'CRM currency for all monetary values. Once set, cannot be edited.',
@@ -39,12 +39,12 @@
           </div>
         </div>
         <div>
-          <div v-if="settings.doc?.currency" class="text-base text-ink-gray-8">
+          <div v-if="settings.doc?.currency" class="text-ink-gray-8 text-base">
             {{ settings.doc.currency }}
           </div>
           <Link
             v-else
-            class="form-control flex-1 truncate w-40"
+            class="flex-1 w-40 truncate form-control"
             :value="settings.doc?.currency"
             doctype="Currency"
             @change="(v) => setCurrency(v)"
@@ -53,13 +53,13 @@
           />
         </div>
       </div>
-      <div class="h-px border-t mx-2 border-outline-gray-modals" />
-      <div class="flex items-center justify-between gap-8 py-3 px-2">
+      <div class="mx-2 border-t border-outline-gray-modals h-px" />
+      <div class="flex justify-between items-center gap-8 px-2 py-3">
         <div class="flex flex-col">
-          <div class="text-p-base font-medium text-ink-gray-7 truncate">
+          <div class="font-medium text-ink-gray-7 text-p-base truncate">
             {{ __('Exchange rate provider') }}
           </div>
-          <div class="text-p-sm text-ink-gray-5">
+          <div class="text-ink-gray-5 text-p-sm">
             {{ __('Configure the exchange rate provider for your CRM') }}
           </div>
         </div>
@@ -79,27 +79,27 @@
       </div>
       <div
         v-if="settings.doc.service_provider === 'exchangerate.host'"
-        class="h-px border-t mx-2 border-outline-gray-modals"
+        class="mx-2 border-t border-outline-gray-modals h-px"
       />
       <div
         v-if="settings.doc.service_provider === 'exchangerate.host'"
-        class="flex items-center justify-between gap-8 p-3"
+        class="flex justify-between items-center gap-8 p-3"
       >
         <div class="flex flex-col">
-          <div class="text-p-base font-medium text-ink-gray-7 truncate">
+          <div class="font-medium text-ink-gray-7 text-p-base truncate">
             {{ __('Access key') }}
           </div>
-          <div class="text-p-sm text-ink-gray-5">
+          <div class="text-ink-gray-5 text-p-sm">
             {{
               __(
                 'Access key for Exchangerate Host. Required for fetching exchange rates.',
               )
             }}
           </div>
-          <div class="text-p-sm text-ink-gray-5">
+          <div class="text-ink-gray-5 text-p-sm">
             {{ __('You can get your access key from ') }}
             <a
-              class="hover:underline text-ink-gray-7"
+              class="text-ink-gray-7 hover:underline"
               href="https://exchangerate.host/#/docs/access_key"
               target="_blank"
             >
@@ -170,7 +170,7 @@ function setCurrency(value) {
     theme: 'blue',
     actions: [
       {
-        label: __('Save'),
+        label: 'Salvar',
         variant: 'solid',
         onClick: (close) => {
           settings.doc.currency = value

@@ -1,10 +1,10 @@
 <template>
   <Dialog v-model="show" :options="dialogOptions">
     <template #body>
-      <div class="px-4 pt-5 pb-6 bg-surface-modal sm:px-6">
-        <div class="flex items-center justify-between mb-5">
+      <div class="bg-surface-modal px-4 sm:px-6 pt-5 pb-6">
+        <div class="flex justify-between items-center mb-5">
           <div class="flex items-center gap-2">
-            <h3 class="text-2xl font-semibold leading-6 text-ink-gray-9">
+            <h3 class="font-semibold text-ink-gray-9 text-2xl leading-6">
               {{ __(dialogOptions.title) || __('Untitled') }}
             </h3>
             <Badge v-if="callLog.isDirty" :label="'Not Saved'" theme="orange" />
@@ -35,7 +35,7 @@
           <ErrorMessage class="mt-8" :message="error" />
         </div>
       </div>
-      <div class="px-4 pt-4 pb-7 sm:px-6">
+      <div class="px-4 sm:px-6 pt-4 pb-7">
         <div class="flex justify-end gap-2">
           <Button
             class="w-full"
@@ -98,7 +98,7 @@ const dialogOptions = computed(() => {
   let size = 'xl'
   let actions = [
     {
-      label: editMode.value ? __('Save') : __('Create'),
+      label: editMode.value ? 'Salvar' : __('Create'),
       variant: 'solid',
       onClick: () => (editMode.value ? updateCallLog() : createCallLog()),
     },

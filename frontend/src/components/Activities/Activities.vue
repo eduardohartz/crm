@@ -233,7 +233,7 @@
             >
               <span>{{ activity.show_others ? __('Hide') : __('Show') }}</span>
               <span> +{{ activity.other_versions.length + 1 }} </span>
-              <span>{{ __('changes from') }}</span>
+              <span>mudanças de</span>
               <span>{{ activity.owner_name }}</span>
               <Button
                 class="!size-4"

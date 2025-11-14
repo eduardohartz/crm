@@ -2,7 +2,7 @@
   <Dialog v-model="show" :options="{ size: '3xl' }">
     <template #body-title>
       <h3
-        class="flex items-center gap-2 text-2xl font-semibold leading-6 text-ink-gray-9"
+        class="flex items-center gap-2 font-semibold text-ink-gray-9 text-2xl leading-6"
       >
         <div>{{ __('Edit Field Layout') }}</div>
         <Badge
@@ -23,7 +23,7 @@
           <div class="flex flex-row-reverse gap-2">
             <Button
               :loading="loading"
-              :label="__('Save')"
+              :label="'Salvar'"
               variant="solid"
               @click="saveChanges"
             />
@@ -32,11 +32,11 @@
         </div>
         <div v-if="tabs.data?.[0]?.sections" class="flex gap-4">
           <SidePanelLayoutEditor
-            class="flex flex-1 flex-col pr-2"
+            class="flex flex-col flex-1 pr-2"
             :sections="tabs.data[0].sections"
             :doctype="_doctype"
           />
-          <div v-if="preview" class="flex flex-1 flex-col border rounded">
+          <div v-if="preview" class="flex flex-col flex-1 border rounded">
             <SidePanelLayout
               :sections="tabs.data[0].sections"
               :doctype="_doctype"
@@ -46,7 +46,7 @@
             >
               <div
                 v-if="section.name == 'contacts_section'"
-                class="flex h-16 items-center justify-center text-base text-ink-gray-5"
+                class="flex justify-center items-center h-16 text-ink-gray-5 text-base"
               >
                 {{ __('No contacts added') }}
               </div>
@@ -54,7 +54,7 @@
           </div>
           <div
             v-else
-            class="flex flex-1 justify-center items-center text-ink-gray-5 bg-surface-gray-2 rounded"
+            class="flex flex-1 justify-center items-center bg-surface-gray-2 rounded text-ink-gray-5"
           >
             {{ __('Toggle on for preview') }}
           </div>

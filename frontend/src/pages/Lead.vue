@@ -114,7 +114,7 @@
               </Tooltip>
               <div class="flex gap-1.5">
                 <Button
-                  :tooltip="'Mande uma mensagem no WhatsApp'"
+                  :tooltip="'Enviar mensagem WhatsApp'"
                   :icon="WhatsAppIcon"
                   @click="
                     doc.mobile_no

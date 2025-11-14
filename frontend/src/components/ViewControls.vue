@@ -1,10 +1,10 @@
 <template>
   <div
     v-if="isMobileView"
-    class="flex flex-col justify-between gap-2 sm:px-5 px-3 py-4"
+    class="flex flex-col justify-between gap-2 px-3 sm:px-5 py-4"
   >
     <div class="flex flex-col gap-2">
-      <div class="flex items-center justify-between gap-2 overflow-x-auto">
+      <div class="flex justify-between items-center gap-2 overflow-x-auto">
         <div class="flex gap-2">
           <Filter
             v-model="list"
@@ -52,7 +52,7 @@
       </div>
       <div
         v-if="viewUpdated && route.query.view && (!view.public || isManager())"
-        class="flex flex-row-reverse items-center gap-2 border-r pr-2"
+        class="flex flex-row-reverse items-center gap-2 pr-2 border-r"
       >
         <Button :label="__('Cancel')" @click="cancelChanges" />
         <Button :label="__('Save Changes')" @click="saveView" />
@@ -61,15 +61,15 @@
   </div>
   <div
     v-else-if="customizeQuickFilter"
-    class="flex items-center justify-between gap-2 p-5"
+    class="flex justify-between items-center gap-2 p-5"
   >
-    <div class="flex flex-1 items-center overflow-hidden pl-1 gap-2">
+    <div class="flex flex-1 items-center gap-2 pl-1 overflow-hidden">
       <FadedScrollableDiv
-        class="flex overflow-x-auto -ml-1"
+        class="flex -ml-1 overflow-x-auto"
         orientation="horizontal"
       >
         <Draggable
-          class="flex w-full gap-2 items-center"
+          class="flex items-center gap-2 w-full"
           :list="newQuickFilters"
           group="filters"
           item-key="fieldname"
@@ -84,7 +84,7 @@
                 </template>
                 <template #suffix>
                   <FeatherIcon
-                    class="h-3.5 cursor-pointer group-hover:flex hidden"
+                    class="hidden group-hover:flex h-3.5 cursor-pointer"
                     name="x"
                     @click.stop="removeQuickFilter(filter)"
                   />
@@ -102,7 +102,7 @@
         >
           <template #target="{ togglePopover }">
             <Button
-              class="whitespace-nowrap mr-2"
+              class="mr-2 whitespace-nowrap"
               variant="ghost"
               :label="__('Add filter')"
               iconLeft="plus"
@@ -111,7 +111,7 @@
           </template>
           <template #item-label="{ option }">
             <Tooltip :text="option.value" :hover-delay="1">
-              <div class="flex-1 truncate text-ink-gray-7">
+              <div class="flex-1 text-ink-gray-7 truncate">
                 {{ option.label }}
               </div>
             </Tooltip>
@@ -119,19 +119,19 @@
         </Autocomplete>
       </div>
     </div>
-    <div class="-ml-2 h-[70%] border-l" />
+    <div class="-ml-2 border-l h-[70%]" />
     <div class="flex gap-1">
       <Button
-        :label="__('Save')"
+        :label="'Salvar'"
         :loading="updateQuickFilters.loading"
         @click="saveQuickFilters"
       />
       <Button icon="x" @click="customizeQuickFilter = false" />
     </div>
   </div>
-  <div v-else class="flex items-center justify-between gap-2 px-5 py-4">
+  <div v-else class="flex justify-between items-center gap-2 px-5 py-4">
     <FadedScrollableDiv
-      class="flex flex-1 items-center overflow-x-auto -ml-1"
+      class="flex flex-1 items-center -ml-1 overflow-x-auto"
       orientation="horizontal"
     >
       <div
@@ -145,11 +145,11 @@
         />
       </div>
     </FadedScrollableDiv>
-    <div class="-ml-2 h-[70%] border-l" />
+    <div class="-ml-2 border-l h-[70%]" />
     <div class="flex items-center gap-2">
       <div
         v-if="viewUpdated && route.query.view && (!view.public || isManager())"
-        class="flex items-center gap-2 border-r pr-2"
+        class="flex items-center gap-2 pr-2 border-r"
       >
         <Button :label="__('Cancel')" @click="cancelChanges" />
         <Button :label="__('Save Changes')" @click="saveView" />
@@ -208,7 +208,7 @@
                     route.params.viewType !== 'kanban',
                 },
                 {
-                  label: __('Customize quick filters'),
+                  label: 'Customizar filtro rápido',
                   icon: () => h(QuickFilterIcon, { class: 'h-4 w-4' }),
                   onClick: () => showCustomizeQuickFilter(),
                   condition: () => isManager(),

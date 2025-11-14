@@ -13,18 +13,18 @@
   </div>
   <div v-else>
     <div
-      class="flex flex-col items-center justify-center gap-4 rounded-lg border border-dashed border-outline-gray-modals min-h-64 text-ink-gray-5"
+      class="flex flex-col justify-center items-center gap-4 border border-dashed rounded-lg border-outline-gray-modals min-h-64 text-ink-gray-5"
       @dragover.prevent="dragover"
       @dragleave.prevent="dragleave"
       @drop.prevent="dropfiles"
       v-show="files.length === 0"
     >
       <div v-if="!isDragging" class="flex flex-col gap-3">
-        <div class="text-center text-ink-gray-5">
-          {{ __('Drag and drop files here or upload from') }}
+        <div class="text-ink-gray-5 text-center">
+          Arraste e solte os arquivos aqui ou faça upload de
         </div>
         <div
-          class="grid grid-flow-col justify-center gap-4 text-center text-base"
+          class="justify-center gap-4 grid grid-flow-col text-base text-center"
         >
           <input
             type="file"
@@ -60,11 +60,11 @@
       <div
         v-for="file in files"
         :key="file.name"
-        class="flex items-center justify-between gap-2 py-3"
+        class="flex justify-between items-center gap-2 py-3"
       >
         <div class="flex items-center gap-4 truncate">
           <div
-            class="size-11 rounded overflow-hidden flex-shrink-0 flex justify-center items-center"
+            class="flex flex-shrink-0 justify-center items-center rounded size-11 overflow-hidden"
             :class="{ border: !file.type?.startsWith('image') }"
           >
             <img
@@ -75,8 +75,8 @@
             />
             <component v-else class="size-4" :is="fileIcon(file.type)" />
           </div>
-          <div class="flex flex-col gap-1 text-sm text-ink-gray-5 truncate">
-            <div class="text-base text-ink-gray-8 truncate">
+          <div class="flex flex-col gap-1 text-ink-gray-5 text-sm truncate">
+            <div class="text-ink-gray-8 text-base truncate">
               {{ file.name }}
             </div>
             <div class="mb-1">
@@ -85,7 +85,7 @@
             <FormControl
               v-model="file.private"
               type="checkbox"
-              class="[&>label]:text-sm [&>label]:text-ink-gray-5"
+              class="[&>label]:text-ink-gray-5 [&>label]:text-sm"
               :label="__('Private')"
             />
             <ErrorMessage

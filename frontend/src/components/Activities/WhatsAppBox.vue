@@ -1,14 +1,14 @@
 <template>
   <div
     v-if="reply?.message"
-    class="flex items-center justify-around gap-2 px-3 pt-2 sm:px-10"
+    class="flex justify-around items-center gap-2 px-3 sm:px-10 pt-2"
   >
     <div
-      class="mb-1 ml-13 flex-1 cursor-pointer rounded border-0 border-l-4 border-green-500 bg-surface-gray-2 p-2 text-base text-ink-gray-5"
+      class="flex-1 bg-surface-gray-2 mb-1 ml-13 p-2 border-0 border-green-500 border-l-4 rounded text-ink-gray-5 text-base cursor-pointer"
       :class="reply.type == 'Incoming' ? 'border-green-500' : 'border-blue-400'"
     >
       <div
-        class="mb-1 text-sm font-bold"
+        class="mb-1 font-bold text-sm"
         :class="reply.type == 'Incoming' ? 'text-ink-green-2' : 'text-ink-blue-link'"
       >
         {{ reply.from_name || __('You') }}
@@ -18,15 +18,15 @@
 
     <Button variant="ghost" icon="x" @click="reply = {}" />
   </div>
-  <div class="flex items-end gap-2 px-3 py-2.5 sm:px-10" v-bind="$attrs">
-    <div class="flex h-8 items-center gap-2">
+  <div class="flex items-end gap-2 px-3 sm:px-10 py-2.5" v-bind="$attrs">
+    <div class="flex items-center gap-2 h-8">
       <FileUploader @success="(file) => uploadFile(file)">
         <template v-slot="{ openFileSelector }">
           <div class="flex items-center space-x-2">
             <Dropdown :options="uploadOptions(openFileSelector)">
               <FeatherIcon
                 name="plus"
-                class="size-4.5 cursor-pointer text-ink-gray-5"
+                class="size-4.5 text-ink-gray-5 cursor-pointer"
               />
             </Dropdown>
           </div>
@@ -45,14 +45,14 @@
       >
         <SmileIcon
           @click="togglePopover"
-          class="flex size-4.5 cursor-pointer rounded-sm text-xl leading-none text-ink-gray-4"
+          class="flex rounded-sm size-4.5 text-ink-gray-4 text-xl leading-none cursor-pointer"
         />
       </IconPicker>
     </div>
     <Textarea
       ref="textareaRef"
       type="textarea"
-      class="min-h-8 w-full"
+      class="w-full min-h-8"
       :rows="rows"
       v-model="content"
       :placeholder="placeholder"
@@ -82,7 +82,7 @@ const textareaRef = ref(null)
 const emoji = ref('')
 
 const content = ref('')
-const placeholder = ref(__('Type your message here...'))
+const placeholder = ref('Escreva sua mensagem aqui... Pressione Enter para enviar.')
 const fileType = ref('')
 
 function show() {
