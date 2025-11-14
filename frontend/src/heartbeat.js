@@ -5,7 +5,7 @@ const INTERVAL = 15000
 async function sendHeartbeat() {
   try {
     await frappeRequest({
-      url: '/api/method/crm.crm.api.heartbeat.ping',
+      url: '/api/method/crm.heartbeat.ping',
       method: 'POST',
     })
   } catch (err) {
