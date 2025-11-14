@@ -2,11 +2,11 @@
   <div>
     <div
       v-show="showSmallCallPopup"
-      class="ml-2 flex cursor-pointer select-none items-center justify-between gap-1 rounded-full bg-surface-gray-7 px-2 py-[7px] text-base text-ink-gray-2"
+      class="flex justify-between items-center gap-1 bg-surface-gray-7 ml-2 px-2 py-[7px] rounded-full text-ink-gray-2 text-base cursor-pointer select-none"
       @click="toggleCallPopup"
     >
       <div
-        class="flex justify-center items-center size-5 rounded-full bg-surface-gray-6 shrink-0 mr-1"
+        class="flex justify-center items-center bg-surface-gray-6 mr-1 rounded-full size-5 shrink-0"
       >
         <Avatar
           v-if="contact?.image"
@@ -39,15 +39,15 @@
     </div>
     <div
       v-show="showCallPopup"
-      class="fixed z-20 w-[280px] min-h-44 flex gap-2 flex-col rounded-lg bg-surface-gray-7 p-4 pt-2.5 text-ink-gray-2 shadow-2xl"
+      class="z-20 fixed flex flex-col gap-2 bg-surface-gray-7 shadow-2xl p-4 pt-2.5 rounded-lg w-[280px] min-h-44 text-ink-gray-2"
       :style="style"
       @click.stop
     >
       <div
         ref="callPopupHeader"
-        class="header flex items-center justify-between gap-1 text-base cursor-move select-none"
+        class="flex justify-between items-center gap-1 text-base cursor-move select-none header"
       >
-        <div class="flex gap-2 items-center truncate">
+        <div class="flex items-center gap-2 truncate">
           <div
             v-if="showNote || showTask"
             class="flex items-center gap-3 truncate"
@@ -60,12 +60,12 @@
             />
             <div
               v-else
-              class="flex justify-center items-center size-7 rounded-full bg-surface-gray-6 shrink-0"
+              class="flex justify-center items-center bg-surface-gray-6 rounded-full size-7 shrink-0"
             >
               <AvatarIcon class="size-3" />
             </div>
             <div
-              class="flex flex-col gap-1 text-base leading-4 overflow-hidden"
+              class="flex flex-col gap-1 overflow-hidden text-base leading-4"
             >
               <div class="font-medium truncate">
                 {{ contact?.full_name ?? contact?.mobile_no }}
@@ -123,7 +123,7 @@
         <div class="flex">
           <Button
             @click="toggleCallPopup"
-            class="bg-surface-gray-7 text-ink-white hover:bg-surface-gray-6 shrink-0 cursor-pointer"
+            class="bg-surface-gray-7 hover:bg-surface-gray-6 text-ink-white cursor-pointer shrink-0"
             :tooltip="__('Minimize')"
             :icon="MinimizeIcon"
             size="md"
@@ -131,13 +131,13 @@
           <Button
             v-if="callStatus == 'Call ended' || callStatus == 'No answer'"
             @click="closeCallPopup"
-            class="bg-surface-gray-7 text-ink-white hover:bg-surface-gray-6 shrink-0"
+            class="bg-surface-gray-7 hover:bg-surface-gray-6 text-ink-white shrink-0"
             icon="x"
             size="md"
           />
         </div>
       </div>
-      <div class="body flex-1">
+      <div class="flex-1 body">
         <div v-if="showNote">
           <TextEditor
             variant="ghost"
@@ -159,34 +159,34 @@
           />
           <div
             v-else
-            class="flex justify-center items-center size-8 rounded-full bg-surface-gray-6"
+            class="flex justify-center items-center bg-surface-gray-6 rounded-full size-8"
           >
             <AvatarIcon class="size-4" />
           </div>
           <div v-if="contact?.full_name" class="flex flex-col gap-1">
-            <div class="text-lg font-medium leading-5">
+            <div class="font-medium text-lg leading-5">
               {{ contact.full_name }}
             </div>
-            <div class="text-base text-ink-gray-6 leading-4">
+            <div class="text-ink-gray-6 text-base leading-4">
               {{ contact.mobile_no }}
             </div>
           </div>
-          <div v-else class="text-lg font-medium leading-5">
+          <div v-else class="font-medium text-lg leading-5">
             {{ contact.mobile_no }}
           </div>
         </div>
       </div>
-      <div class="footer flex justify-between gap-2">
+      <div class="flex justify-between gap-2 footer">
         <div class="flex gap-2">
           <Button
-            class="bg-surface-gray-6 text-ink-white hover:bg-surface-gray-5"
+            class="bg-surface-gray-6 hover:bg-surface-gray-5 text-ink-white"
             :tooltip="__('Add a note')"
             size="md"
             :icon="NoteIcon"
             @click="showNoteWindow"
           />
           <Button
-            class="bg-surface-gray-6 text-ink-white hover:bg-surface-gray-5"
+            class="bg-surface-gray-6 hover:bg-surface-gray-5 text-ink-white"
             size="md"
             :tooltip="__('Add a task')"
             :icon="TaskIcon"
@@ -194,7 +194,7 @@
           />
           <Button
             v-if="contact.deal || contact.lead"
-            class="bg-surface-gray-6 text-ink-white hover:bg-surface-gray-5"
+            class="bg-surface-gray-6 hover:bg-surface-gray-5 text-ink-white"
             size="md"
             :iconRight="ArrowUpRightIcon"
             :label="contact.deal ? __('Deal') : __('Lead')"
@@ -205,7 +205,7 @@
         <Button
           v-if="(note.name || task.name) && dirty"
           @click="update"
-          class="bg-surface-white !text-ink-gray-9 hover:!bg-surface-gray-3"
+          class="bg-surface-white hover:!bg-surface-gray-3 !text-ink-gray-9"
           variant="solid"
           :label="__('Update')"
           size="md"
@@ -217,9 +217,9 @@
             !task.name
           "
           @click="save"
-          class="bg-surface-white !text-ink-gray-9 hover:!bg-surface-gray-3"
+          class="bg-surface-white hover:!bg-surface-gray-3 !text-ink-gray-9"
           variant="solid"
-          :label="__('Save')"
+          :label="'Salvar'"
           size="md"
         />
       </div>

@@ -18,8 +18,8 @@
   >
     <template #top>
       <div class="flex flex-col gap-3">
-        <div class="sm:mx-10 mx-4 flex items-center gap-2 border-t pt-2.5">
-          <span class="text-xs text-ink-gray-4">{{ __('TO') }}:</span>
+        <div class="flex items-center gap-2 mx-4 sm:mx-10 pt-2.5 border-t">
+          <span class="text-ink-gray-4 text-xs">PARA:</span>
           <MultiSelectEmailInput
             class="flex-1"
             variant="ghost"
@@ -52,8 +52,8 @@
             />
           </div>
         </div>
-        <div v-if="cc" class="sm:mx-10 mx-4 flex items-center gap-2">
-          <span class="text-xs text-ink-gray-4">{{ __('CC') }}:</span>
+        <div v-if="cc" class="flex items-center gap-2 mx-4 sm:mx-10">
+          <span class="text-ink-gray-4 text-xs">{{ __('CC') }}:</span>
           <MultiSelectEmailInput
             ref="ccInput"
             class="flex-1"
@@ -65,8 +65,8 @@
             "
           />
         </div>
-        <div v-if="bcc" class="sm:mx-10 mx-4 flex items-center gap-2">
-          <span class="text-xs text-ink-gray-4">{{ __('BCC') }}:</span>
+        <div v-if="bcc" class="flex items-center gap-2 mx-4 sm:mx-10">
+          <span class="text-ink-gray-4 text-xs">CCo:</span>
           <MultiSelectEmailInput
             ref="bccInput"
             class="flex-1"
@@ -78,10 +78,10 @@
             "
           />
         </div>
-        <div class="sm:mx-10 mx-4 flex items-center gap-2 pb-2.5">
-          <span class="text-xs text-ink-gray-4">{{ __('SUBJECT') }}:</span>
+        <div class="flex items-center gap-2 mx-4 sm:mx-10 pb-2.5">
+          <span class="text-ink-gray-4 text-xs">ASSUNTO:</span>
           <input
-            class="flex-1 border-none text-ink-gray-9 text-base bg-surface-white hover:bg-surface-white focus:border-none focus:!shadow-none focus-visible:!ring-0"
+            class="flex-1 bg-surface-white hover:bg-surface-white focus:!shadow-none border-none focus:border-none focus-visible:!ring-0 text-ink-gray-9 text-base"
             v-model="subject"
           />
         </div>
@@ -98,7 +98,7 @@
     </template>
     <template v-slot:bottom>
       <div v-if="editable" class="flex flex-col gap-2">
-        <div class="flex flex-wrap gap-2 sm:px-10 px-4">
+        <div class="flex flex-wrap gap-2 px-4 sm:px-10">
           <AttachmentItem
             v-for="a in attachments"
             :key="a.file_url"
@@ -114,9 +114,9 @@
           </AttachmentItem>
         </div>
         <div
-          class="flex justify-between gap-2 overflow-hidden border-t sm:px-10 px-4 py-2.5"
+          class="flex justify-between gap-2 px-4 sm:px-10 py-2.5 border-t overflow-hidden"
         >
-          <div class="flex gap-1 items-center overflow-x-auto">
+          <div class="flex items-center gap-1 overflow-x-auto">
             <TextEditorBubbleMenu :buttons="textEditorMenuButtons" />
             <IconPicker
               v-model="emoji"
@@ -154,7 +154,7 @@
               @click="showEmailTemplateSelectorModal = true"
             />
           </div>
-          <div class="mt-2 flex items-center justify-end space-x-2 sm:mt-0">
+          <div class="flex justify-end items-center space-x-2 mt-2 sm:mt-0">
             <Button v-bind="discardButtonProps || {}" :label="__('Discard')" />
             <Button
               variant="solid"

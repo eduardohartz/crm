@@ -1,9 +1,9 @@
 <template>
   <div
     v-if="title !== 'Data'"
-    class="mx-4 my-3 flex items-center justify-between text-lg font-medium sm:mx-10 sm:mb-4 sm:mt-8"
+    class="flex justify-between items-center mx-4 sm:mx-10 my-3 sm:mt-8 sm:mb-4 font-medium text-lg"
   >
-    <div class="flex h-8 items-center text-xl font-semibold text-ink-gray-8">
+    <div class="flex items-center h-8 font-semibold text-ink-gray-8 text-xl">
       {{ __(title) }}
     </div>
     <Button
@@ -46,18 +46,6 @@
       iconLeft="plus"
       @click="showFilesUploader = true"
     />
-    <div class="flex gap-2 shrink-0" v-else-if="title == 'WhatsApp'">
-      <Button
-        :label="__('Send Template')"
-        @click="showWhatsappTemplates = true"
-      />
-      <Button
-        variant="solid"
-        :label="__('New Message')"
-        iconLeft="plus"
-        @click="whatsappBox.show()"
-      />
-    </div>
     <Dropdown v-else :options="defaultActions" @click.stop>
       <template v-slot="{ open }">
         <Button

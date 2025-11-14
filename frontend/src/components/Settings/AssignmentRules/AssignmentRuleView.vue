@@ -1,9 +1,9 @@
 <template>
   <div
     v-if="!getAssignmentRuleData.loading"
-    class="flex flex-col h-full gap-6 px-6 py-8 text-ink-gray-8"
+    class="flex flex-col gap-6 px-6 py-8 h-full text-ink-gray-8"
   >
-    <div class="flex items-center justify-between px-2 w-full">
+    <div class="flex justify-between items-center px-2 w-full">
       <div class="flex items-center gap-2">
         <Button
           variant="ghost"
@@ -13,7 +13,7 @@
           "
           size="md"
           @click="goBack()"
-          class="cursor-pointer -ml-4 hover:bg-transparent focus:bg-transparent focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:none active:bg-transparent active:outline-none active:ring-0 active:ring-offset-0 active:text-ink-gray-5 font-semibold text-xl hover:opacity-70 !pr-0 !max-w-96 !justify-start"
+          class="!justify-start hover:bg-transparent focus:bg-transparent active:bg-transparent hover:opacity-70 -ml-4 !pr-0 focus:outline-none active:outline-none focus:ring-0 active:ring-0 focus:ring-offset-0 active:ring-offset-0 !max-w-96 font-semibold active:text-ink-gray-5 text-xl cursor-pointer focus-visible:none"
         />
         <Badge
           :variant="'subtle'"
@@ -25,15 +25,15 @@
       </div>
       <div class="flex items-center gap-4">
         <div
-          class="flex items-center justify-between gap-2"
+          class="flex justify-between items-center gap-2"
           @click="assignmentRuleData.disabled = !assignmentRuleData.disabled"
         >
           <Switch size="sm" :model-value="!assignmentRuleData.disabled" />
-          <span class="text-sm text-ink-gray-7">{{ __('Enabled') }}</span>
+          <span class="text-ink-gray-7 text-sm">{{ __('Enabled') }}</span>
         </div>
         <Button
           :disabled="Boolean(!isDirty && step.data)"
-          :label="__('Save')"
+          :label="'Salvar'"
           theme="gray"
           variant="solid"
           @click="saveAssignmentRule()"
@@ -41,8 +41,8 @@
         />
       </div>
     </div>
-    <div class="overflow-y-auto px-2">
-      <div class="grid grid-cols-2 gap-5">
+    <div class="px-2 overflow-y-auto">
+      <div class="gap-5 grid grid-cols-2">
         <div>
           <FormControl
             :type="'text'"
@@ -65,7 +65,7 @@
           <Popover>
             <template #target="{ togglePopover }">
               <div
-                class="flex items-center justify-between text-base rounded h-7 py-1.5 pl-2 pr-2 border border-outline-gray-2 bg-surface-gray-2 placeholder-ink-gray-4 hover:border-outline-gray-modals hover:bg-surface-gray-3 focus:bg-surface-white focus:border-outline-gray-4 focus:shadow-sm focus:ring-0 focus-visible:ring-2 focus-visible:ring-outline-gray-3 text-ink-gray-8 transition-colors w-full dark:[color-scheme:dark] cursor-default"
+                class="flex justify-between items-center bg-surface-gray-2 hover:bg-surface-gray-3 focus:bg-surface-white focus:shadow-sm py-1.5 pr-2 pl-2 border rounded border-outline-gray-2 hover:border-outline-gray-modals focus-visible:ring-outline-gray-3 focus:border-outline-gray-4 focus-visible:ring-2 focus:ring-0 w-full h-7 text-ink-gray-8 text-base transition-colors cursor-default placeholder-ink-gray-4 dark:[color-scheme:dark]"
                 @click="togglePopover()"
               >
                 <div>
@@ -80,12 +80,12 @@
             </template>
             <template #body="{ togglePopover }">
               <div
-                class="p-1 text-ink-gray-6 top-1 absolute w-full bg-white shadow-2xl rounded"
+                class="top-1 absolute bg-white shadow-2xl p-1 rounded w-full text-ink-gray-6"
               >
                 <div
                   v-for="option in priorityOptions"
                   :key="option.value"
-                  class="p-2 cursor-pointer hover:bg-gray-50 text-base flex items-center justify-between rounded"
+                  class="flex justify-between items-center hover:bg-gray-50 p-2 rounded text-base cursor-pointer"
                   @click="
                     () => {
                       assignmentRuleData.priority = option.value
@@ -141,11 +141,11 @@
       <hr class="my-8" />
       <div>
         <div class="flex flex-col gap-1">
-          <span class="text-lg font-semibold text-ink-gray-8">{{
+          <span class="font-semibold text-ink-gray-8 text-lg">{{
             __('Assignment condition')
           }}</span>
-          <div class="flex items-center justify-between gap-6">
-            <span class="text-p-sm text-ink-gray-6">
+          <div class="flex justify-between items-center gap-6">
+            <span class="text-ink-gray-6 text-p-sm">
               {{
                 __('Choose which {0} are affected by this assignment rule.', [
                   documentType,
@@ -162,7 +162,7 @@
               <Popover trigger="hover" :hoverDelay="0.25" placement="top-end">
                 <template #target>
                   <div
-                    class="text-sm text-ink-gray-6 flex gap-1 cursor-default text-nowrap items-center"
+                    class="flex items-center gap-1 text-ink-gray-6 text-sm text-nowrap cursor-default"
                   >
                     <span>{{ __('Old Condition') }}</span>
                     <FeatherIcon name="info" class="size-4" />
@@ -170,7 +170,7 @@
                 </template>
                 <template #body-main>
                   <div
-                    class="text-sm text-ink-gray-6 p-2 bg-white rounded-md max-w-96 text-wrap whitespace-pre-wrap leading-5"
+                    class="bg-white p-2 rounded-md max-w-96 text-ink-gray-6 text-sm text-wrap leading-5 whitespace-pre-wrap"
                   >
                     <code>{{ assignmentRuleData.assignCondition }}</code>
                   </div>
@@ -181,7 +181,7 @@
         </div>
         <div class="mt-5">
           <div
-            class="flex flex-col gap-3 items-center text-center text-ink-gray-7 text-sm mb-2 border border-outline-gray-2 rounded-md p-3 py-4"
+            class="flex flex-col items-center gap-3 mb-2 p-3 py-4 border rounded-md border-outline-gray-2 text-ink-gray-7 text-sm text-center"
             v-if="!useNewUI && assignmentRuleData.assignCondition"
           >
             <span class="text-p-sm">
@@ -220,11 +220,11 @@
       <hr class="my-8" />
       <div>
         <div class="flex flex-col gap-1">
-          <span class="text-lg font-semibold text-ink-gray-8">{{
+          <span class="font-semibold text-ink-gray-8 text-lg">{{
             __('Unassignment condition')
           }}</span>
-          <div class="flex items-center justify-between gap-6">
-            <span class="text-p-sm text-ink-gray-6">
+          <div class="flex justify-between items-center gap-6">
+            <span class="text-ink-gray-6 text-p-sm">
               {{
                 __(
                   'Choose which {0} are affected by this un-assignment rule.',
@@ -246,7 +246,7 @@
               <Popover trigger="hover" :hoverDelay="0.25" placement="top-end">
                 <template #target>
                   <div
-                    class="text-sm text-ink-gray-6 flex gap-1 cursor-default text-nowrap items-center"
+                    class="flex items-center gap-1 text-ink-gray-6 text-sm text-nowrap cursor-default"
                   >
                     <span> {{ __('Old Condition') }} </span>
                     <FeatherIcon name="info" class="size-4" />
@@ -254,7 +254,7 @@
                 </template>
                 <template #body-main>
                   <div
-                    class="text-sm text-ink-gray-6 p-2 bg-white rounded-md max-w-96 text-wrap whitespace-pre-wrap leading-5"
+                    class="bg-white p-2 rounded-md max-w-96 text-ink-gray-6 text-sm text-wrap leading-5 whitespace-pre-wrap"
                   >
                     <code>{{ assignmentRuleData.unassignCondition }}</code>
                   </div>
@@ -266,7 +266,7 @@
         <div class="mt-5">
           <div
             v-if="!useNewUI && assignmentRuleData.unassignCondition"
-            class="flex flex-col gap-3 items-center text-center text-ink-gray-7 text-sm mb-2 border border-outline-gray-2 rounded-md p-3 py-4"
+            class="flex flex-col items-center gap-3 mb-2 p-3 py-4 border rounded-md border-outline-gray-2 text-ink-gray-7 text-sm text-center"
           >
             <span class="text-p-sm">
               {{ __('Conditions for this rule were created from') }}
@@ -298,10 +298,10 @@
       <hr class="my-8" />
       <div>
         <div class="flex flex-col gap-1">
-          <span class="text-lg font-semibold text-ink-gray-8">{{
+          <span class="font-semibold text-ink-gray-8 text-lg">{{
             __('Assignment Schedule')
           }}</span>
-          <span class="text-p-sm text-ink-gray-6">
+          <span class="text-ink-gray-6 text-p-sm">
             {{
               __('Choose the days of the week when this rule should be active.')
             }}
@@ -315,7 +315,7 @@
       <AssigneeRules />
     </div>
   </div>
-  <div v-else class="flex items-center h-full justify-center">
+  <div v-else class="flex justify-center items-center h-full">
     <LoadingIndicator class="w-4" />
   </div>
   <ConfirmDialog

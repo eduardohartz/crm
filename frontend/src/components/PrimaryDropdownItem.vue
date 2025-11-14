@@ -1,8 +1,8 @@
 <template>
   <div
-    class="group flex w-full items-center justify-between rounded bg-transparent p-1 pl-2 text-base text-ink-gray-8 transition-colors hover:bg-surface-gray-3 active:bg-surface-gray-4"
+    class="group flex justify-between items-center bg-transparent hover:bg-surface-gray-3 active:bg-surface-gray-4 p-1 pl-2 rounded w-full text-ink-gray-8 text-base transition-colors"
   >
-    <div class="flex flex-1 items-center justify-between gap-7">
+    <div class="flex flex-1 justify-between items-center gap-7">
       <div v-show="!editMode">{{ option.value }}</div>
       <TextInput
         ref="inputRef"
@@ -14,12 +14,12 @@
         @keydown.enter.stop="(e) => e.target.blur()"
       />
 
-      <div class="actions flex items-center justify-center">
+      <div class="flex justify-center items-center actions">
         <Button
           v-if="editMode"
           variant="ghost"
-          :label="__('Save')"
-          class="opacity-0 hover:bg-surface-gray-4 group-hover:opacity-100"
+          :label="`Salvar`"
+          class="hover:bg-surface-gray-4 opacity-0 group-hover:opacity-100"
           @click="saveOption"
         />
         <Button
@@ -27,7 +27,7 @@
           :tooltip="__('Set As Primary')"
           variant="ghost"
           :icon="SuccessIcon"
-          class="opacity-0 hover:bg-surface-gray-4 group-hover:opacity-100"
+          class="hover:bg-surface-gray-4 opacity-0 group-hover:opacity-100"
           @click="option.onClick"
         />
         <Button
@@ -35,20 +35,20 @@
           :tooltip="__('Edit')"
           variant="ghost"
           :icon="EditIcon"
-          class="opacity-0 hover:bg-surface-gray-4 group-hover:opacity-100"
+          class="hover:bg-surface-gray-4 opacity-0 group-hover:opacity-100"
           @click="toggleEditMode"
         />
         <Button
           :tooltip="__('Delete')"
           variant="ghost"
           icon="x"
-          class="opacity-0 hover:bg-surface-gray-4 group-hover:opacity-100"
+          class="hover:bg-surface-gray-4 opacity-0 group-hover:opacity-100"
           @click="() => option.onDelete(option, isNew)"
         />
       </div>
     </div>
     <div v-if="option.selected">
-      <FeatherIcon name="check" class="text-ink-gray-5 h-4 w-6" />
+      <FeatherIcon name="check" class="w-6 h-4 text-ink-gray-5" />
     </div>
   </div>
 </template>

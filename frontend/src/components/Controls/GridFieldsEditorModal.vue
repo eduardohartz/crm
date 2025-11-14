@@ -2,7 +2,7 @@
   <Dialog v-model="show">
     <template #body-title>
       <h3
-        class="flex items-center gap-2 text-2xl font-semibold leading-6 text-ink-gray-9"
+        class="flex items-center gap-2 font-semibold text-ink-gray-9 text-2xl leading-6"
       >
         <div>{{ __('Edit Grid Fields Layout') }}</div>
         <Badge
@@ -15,7 +15,7 @@
     </template>
     <template #body-content>
       <div class="mt-4">
-        <div class="text-base text-ink-gray-8 mb-2">
+        <div class="mb-2 text-ink-gray-8 text-base">
           {{ __('Fields Order') }}
         </div>
         <Draggable
@@ -27,7 +27,7 @@
         >
           <template #item="{ element: field }">
             <div
-              class="px-1 py-0.5 bg-surface-gray-2 border border-outline-gray-modals rounded text-base text-ink-gray-8 flex items-center justify-between gap-2"
+              class="flex justify-between items-center gap-2 bg-surface-gray-2 px-1 py-0.5 border rounded border-outline-gray-modals text-ink-gray-8 text-base"
             >
               <div class="flex items-center gap-2">
                 <DragVerticalIcon class="h-3.5 cursor-grab" />
@@ -53,7 +53,7 @@
         >
           <template #target="{ togglePopover }">
             <Button
-              class="w-full mt-2"
+              class="mt-2 w-full"
               :label="__('Add Field')"
               iconLeft="plus"
               @click="togglePopover()"
@@ -72,7 +72,7 @@
       </div>
     </template>
     <template #actions>
-      <div class="flex items-center gap-2 justify-end">
+      <div class="flex justify-end items-center gap-2">
         <Button
           v-if="dirty"
           class="w-full"
@@ -81,7 +81,7 @@
         />
         <Button
           class="w-full"
-          :label="__('Save')"
+          :label="'Salvar'"
           variant="solid"
           @click="update"
           :loading="loading"

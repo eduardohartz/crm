@@ -133,15 +133,13 @@ function assignValues(selections, unselectAll) {
 
 function clearAssignemnts(selections, unselectAll) {
   $dialog({
-    title: __('Clear Assignment'),
-    message: __('Are you sure you want to clear assignment for {0} item(s)?', [
-      selections.size,
-    ]),
+    title: `Remover atribuição`,
+    message: `Você tem certeza que deseja remover a atribuição de atendente para ${selections.size} item(s)?`,
     variant: 'solid',
     theme: 'red',
     actions: [
       {
-        label: __('Clear Assignment'),
+        label: 'Remover atribuição',
         variant: 'solid',
         theme: 'red',
         onClick: (close) => {

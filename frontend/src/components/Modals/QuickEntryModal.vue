@@ -2,7 +2,7 @@
   <Dialog v-model="show" :options="{ size: '4xl' }">
     <template #body-title>
       <h3
-        class="flex items-center gap-2 text-2xl font-semibold leading-6 text-ink-gray-9"
+        class="flex items-center gap-2 font-semibold text-ink-gray-9 text-2xl leading-6"
       >
         <div>{{ __('Edit Quick Entry Layout') }}</div>
         <Badge
@@ -23,7 +23,7 @@
           <div class="flex flex-row-reverse gap-2">
             <Button
               :loading="loading"
-              :label="__('Save')"
+              :label="'Salvar'"
               variant="solid"
               @click="saveChanges"
             />

@@ -2,12 +2,12 @@
   <div v-if="attachments.length">
     <div v-for="(attachment, i) in attachments" :key="attachment.name">
       <div
-        class="activity flex justify-between gap-2 hover:bg-surface-menu-bar rounded text-base p-2.5 cursor-pointer"
+        class="flex justify-between gap-2 hover:bg-surface-menu-bar p-2.5 rounded text-base cursor-pointer activity"
         @click="openFile(attachment)"
       >
         <div class="flex gap-2 truncate">
           <div
-            class="size-11 bg-surface-white rounded overflow-hidden flex-shrink-0 flex justify-center items-center"
+            class="flex flex-shrink-0 justify-center items-center bg-surface-white rounded size-11 overflow-hidden"
             :class="{ border: !isImage(attachment.file_type) }"
           >
             <img
@@ -23,17 +23,17 @@
             />
           </div>
           <div class="flex flex-col justify-center gap-1 truncate">
-            <div class="text-base text-ink-gray-8 truncate">
+            <div class="text-ink-gray-8 text-base truncate">
               {{ attachment.file_name }}
             </div>
-            <div class="mb-1 text-sm text-ink-gray-5">
+            <div class="mb-1 text-ink-gray-5 text-sm">
               {{ convertSize(attachment.file_size) }}
             </div>
           </div>
         </div>
-        <div class="flex flex-col items-end gap-2 flex-shrink-0">
+        <div class="flex flex-col flex-shrink-0 items-end gap-2">
           <Tooltip :text="formatDate(attachment.creation)">
-            <div class="text-sm text-ink-gray-5">
+            <div class="text-ink-gray-5 text-sm">
               {{ __(timeAgo(attachment.creation)) }}
             </div>
           </Tooltip>
@@ -68,7 +68,7 @@
       </div>
       <div
         v-if="i < attachments.length - 1"
-        class="mx-2 h-px border-t border-outline-gray-modals"
+        class="mx-2 border-t border-outline-gray-modals h-px"
       />
     </div>
   </div>
@@ -96,9 +96,7 @@ function openFile(attachment) {
 function togglePrivate(fileName, isPrivate) {
   let changeTo = isPrivate ? __('public') : __('private')
   let title = __('Make attachment {0}', [changeTo])
-  let message = __('Are you sure you want to make this attachment {0}?', [
-    changeTo,
-  ])
+  let message = `Você tem certeza que deseja tornar este anexo ${changeTo}?`
   $dialog({
     title,
     message,

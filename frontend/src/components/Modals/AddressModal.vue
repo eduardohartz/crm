@@ -1,10 +1,10 @@
 <template>
   <Dialog v-model="show" :options="dialogOptions">
     <template #body>
-      <div class="bg-surface-modal px-4 pb-6 pt-5 sm:px-6">
-        <div class="mb-5 flex items-center justify-between">
+      <div class="bg-surface-modal px-4 sm:px-6 pt-5 pb-6">
+        <div class="flex justify-between items-center mb-5">
           <div>
-            <h3 class="text-2xl font-semibold leading-6 text-ink-gray-9">
+            <h3 class="font-semibold text-ink-gray-9 text-2xl leading-6">
               {{ __(dialogOptions.title) || __('Untitled') }}
             </h3>
           </div>
@@ -34,7 +34,7 @@
           <ErrorMessage class="mt-2" :message="error" />
         </div>
       </div>
-      <div class="px-4 pb-7 pt-4 sm:px-6">
+      <div class="px-4 sm:px-6 pt-4 pb-7">
         <div class="space-y-2">
           <Button
             class="w-full"
@@ -95,7 +95,7 @@ const dialogOptions = computed(() => {
   let size = 'xl'
   let actions = [
     {
-      label: editMode.value ? __('Save') : __('Create'),
+      label: editMode.value ? 'Salvar' : __('Create'),
       variant: 'solid',
       onClick: () => (editMode.value ? updateAddress() : createAddress()),
     },

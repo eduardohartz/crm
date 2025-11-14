@@ -5,17 +5,17 @@
     @close="cancel"
   >
     <template #body-content>
-      <div class="-mt-3 mb-4 text-p-base text-ink-gray-7">
+      <div class="-mt-3 mb-4 text-ink-gray-7 text-p-base">
         {{ __('Please provide a reason for marking this deal as lost') }}
       </div>
       <div class="flex flex-col gap-3">
         <div>
-          <div class="mb-2 text-sm text-ink-gray-5">
+          <div class="mb-2 text-ink-gray-5 text-sm">
             {{ __('Lost reason') }}
             <span class="text-ink-red-2">*</span>
           </div>
           <Link
-            class="form-control flex-1 truncate"
+            class="flex-1 truncate form-control"
             :value="lostReason"
             doctype="CRM Lost Reason"
             @change="(v) => (lostReason = v)"
@@ -23,12 +23,12 @@
           />
         </div>
         <div>
-          <div class="mb-2 text-sm text-ink-gray-5">
+          <div class="mb-2 text-ink-gray-5 text-sm">
             {{ __('Lost notes') }}
             <span v-if="lostReason == 'Other'" class="text-ink-red-2">*</span>
           </div>
           <FormControl
-            class="form-control flex-1 truncate"
+            class="flex-1 truncate form-control"
             type="textarea"
             :value="lostNotes"
             @change="(e) => (lostNotes = e.target.value)"
@@ -41,7 +41,7 @@
         <div><ErrorMessage :message="error" /></div>
         <div class="flex gap-2">
           <Button :label="__('Cancel')" @click="cancel" />
-          <Button variant="solid" :label="__('Save')" @click="save" />
+          <Button variant="solid" :label="'Salvar'" @click="save" />
         </div>
       </div>
     </template>
