@@ -74,7 +74,7 @@ def get_chart(name, type, from_date="", to_date="", user=""):
 		method = getattr(frappe.get_attr("crm.api.dashboard"), method_name)
 		return method(from_date, to_date, user)
 	else:
-		return {"error": _("Invalid chart name")}
+		return {"error": "Nome do gráfico inválido"}
 
 
 def get_total_leads(from_date, to_date, user=""):
@@ -126,8 +126,8 @@ def get_total_leads(from_date, to_date, user=""):
 	)
 
 	return {
-		"title": _("Total leads"),
-		"tooltip": _("Total number of leads"),
+		"title": "Total de leads",
+		"tooltip": "Número total de leads",
 		"value": current_month_leads,
 		"delta": delta_in_percentage,
 		"deltaSuffix": "%",
@@ -187,8 +187,8 @@ def get_ongoing_deals(from_date, to_date, user=""):
 	)
 
 	return {
-		"title": _("Ongoing deals"),
-		"tooltip": _("Total number of non won/lost deals"),
+		"title": "Negócios em andamento",
+		"tooltip": "Número total de negócios não ganhos/perdidos",
 		"value": current_month_deals,
 		"delta": delta_in_percentage,
 		"deltaSuffix": "%",
@@ -246,8 +246,8 @@ def get_average_ongoing_deal_value(from_date, to_date, user=""):
 	avg_value_delta = current_month_avg_value - prev_month_avg_value if prev_month_avg_value else 0
 
 	return {
-		"title": _("Avg. ongoing deal value"),
-		"tooltip": _("Average deal value of non won/lost deals"),
+		"title": "Valor médio de negócios em andamento",
+		"tooltip": "Valor médio de negócios não ganhos/perdidos",
 		"value": current_month_avg_value,
 		"delta": avg_value_delta,
 		"prefix": get_base_currency_symbol(),
@@ -307,8 +307,8 @@ def get_won_deals(from_date, to_date, user=""):
 	)
 
 	return {
-		"title": _("Won deals"),
-		"tooltip": _("Total number of won deals based on its closure date"),
+		"title": "Negócios ganhos",
+		"tooltip": "Número total de negócios ganhos com base na data de fechamento",
 		"value": current_month_deals,
 		"delta": delta_in_percentage,
 		"deltaSuffix": "%",
@@ -366,8 +366,8 @@ def get_average_won_deal_value(from_date, to_date, user=""):
 	avg_value_delta = current_month_avg_value - prev_month_avg_value if prev_month_avg_value else 0
 
 	return {
-		"title": _("Avg. won deal value"),
-		"tooltip": _("Average deal value of won deals"),
+		"title": "Valor médio de negócios ganhos",
+		"tooltip": "Valor médio de negócios ganhos",
 		"value": current_month_avg_value,
 		"delta": avg_value_delta,
 		"prefix": get_base_currency_symbol(),
@@ -425,8 +425,8 @@ def get_average_deal_value(from_date, to_date, user=""):
 	delta = current_month_avg - prev_month_avg if prev_month_avg else 0
 
 	return {
-		"title": _("Avg. deal value"),
-		"tooltip": _("Average deal value of ongoing & won deals"),
+		"title": "Valor médio de negócios",
+		"tooltip": "Valor médio de negócios em andamento e ganhos",
 		"value": current_month_avg,
 		"prefix": get_base_currency_symbol(),
 		"delta": delta,
@@ -477,12 +477,12 @@ def get_average_time_to_close_a_lead(from_date, to_date, user=""):
 	delta_lead = current_avg_lead - prev_avg_lead if prev_avg_lead else 0
 
 	return {
-		"title": _("Avg. time to close a lead"),
-		"tooltip": _("Average time taken from lead creation to deal closure"),
+		"title": "Tempo médio para fechar um lead",
+		"tooltip": "Tempo médio desde a criação do lead até o fechamento do negócio",
 		"value": current_avg_lead,
-		"suffix": " days",
+		"suffix": " dias",
 		"delta": delta_lead,
-		"deltaSuffix": " days",
+		"deltaSuffix": " dias",
 		"negativeIsBetter": True,
 	}
 
@@ -530,12 +530,12 @@ def get_average_time_to_close_a_deal(from_date, to_date, user=""):
 	delta_deal = current_avg_deal - prev_avg_deal if prev_avg_deal else 0
 
 	return {
-		"title": _("Avg. time to close a deal"),
-		"tooltip": _("Average time taken from deal creation to deal closure"),
+		"title": "Tempo médio para fechar um negócio",
+		"tooltip": "Tempo médio desde a criação do negócio até o fechamento",
 		"value": current_avg_deal,
-		"suffix": " days",
+		"suffix": " dias",
 		"delta": delta_deal,
-		"deltaSuffix": " days",
+		"deltaSuffix": " dias",
 		"negativeIsBetter": True,
 	}
 
@@ -614,16 +614,16 @@ def get_sales_trend(from_date="", to_date="", user=""):
 
 	return {
 		"data": sales_trend,
-		"title": _("Sales trend"),
-		"subtitle": _("Daily performance of leads, deals, and wins"),
+		"title": "Tendência de vendas",
+		"subtitle": "Desempenho diário de leads, negócios e vitórias",
 		"xAxis": {
-			"title": _("Date"),
+			"title": "Data",
 			"key": "date",
 			"type": "time",
 			"timeGrain": "day",
 		},
 		"yAxis": {
-			"title": _("Count"),
+			"title": "Quantidade",
 		},
 		"series": [
 			{"name": "leads", "type": "line", "showDataPoints": True},
@@ -685,16 +685,16 @@ def get_forecasted_revenue(from_date="", to_date="", user=""):
 
 	return {
 		"data": result or [],
-		"title": _("Forecasted revenue"),
-		"subtitle": _("Projected vs actual revenue based on deal probability"),
+		"title": "Receita prevista",
+		"subtitle": "Receita projetada vs real com base na probabilidade do negócio",
 		"xAxis": {
-			"title": _("Month"),
+			"title": "Mês",
 			"key": "month",
 			"type": "time",
 			"timeGrain": "month",
 		},
 		"yAxis": {
-			"title": _("Revenue") + f" ({get_base_currency_symbol()})",
+			"title": "Receita" + f" ({get_base_currency_symbol()})",
 		},
 		"series": [
 			{"name": "forecasted", "type": "line", "showDataPoints": True},
@@ -752,15 +752,15 @@ def get_funnel_conversion(from_date="", to_date="", user=""):
 
 	return {
 		"data": result or [],
-		"title": _("Funnel conversion"),
-		"subtitle": _("Lead to deal conversion pipeline"),
+		"title": "Conversão de funil",
+		"subtitle": "Pipeline de conversão de lead para negócio",
 		"xAxis": {
-			"title": _("Stage"),
+			"title": "Etapa",
 			"key": "stage",
 			"type": "category",
 		},
 		"yAxis": {
-			"title": _("Count"),
+			"title": "Quantidade",
 		},
 		"swapXY": True,
 		"series": [
@@ -815,13 +815,13 @@ def get_deals_by_stage_axis(from_date="", to_date="", user=""):
 
 	return {
 		"data": result or [],
-		"title": _("Deals by ongoing & won stage"),
+		"title": "Negócios por etapa em andamento e ganhos",
 		"xAxis": {
-			"title": _("Stage"),
+			"title": "Etapa",
 			"key": "stage",
 			"type": "category",
 		},
-		"yAxis": {"title": _("Count")},
+		"yAxis": {"title": "Quantidade"},
 		"series": [
 			{"name": "count", "type": "bar"},
 		],
@@ -868,8 +868,8 @@ def get_deals_by_stage_donut(from_date="", to_date="", user=""):
 
 	return {
 		"data": result or [],
-		"title": _("Deals by stage"),
-		"subtitle": _("Current pipeline distribution"),
+		"title": "Negócios por etapa",
+		"subtitle": "Distribuição atual do pipeline",
 		"categoryColumn": "stage",
 		"valueColumn": "count",
 	}
@@ -916,15 +916,15 @@ def get_lost_deal_reasons(from_date="", to_date="", user=""):
 
 	return {
 		"data": result or [],
-		"title": _("Lost deal reasons"),
-		"subtitle": _("Common reasons for losing deals"),
+		"title": "Motivos de negócios perdidos",
+		"subtitle": "Motivos comuns para perder negócios",
 		"xAxis": {
-			"title": _("Reason"),
+			"title": "Motivo",
 			"key": "reason",
 			"type": "category",
 		},
 		"yAxis": {
-			"title": _("Count"),
+			"title": "Quantidade",
 		},
 		"series": [
 			{"name": "count", "type": "bar"},
@@ -970,8 +970,8 @@ def get_leads_by_source(from_date="", to_date="", user=""):
 
 	return {
 		"data": result or [],
-		"title": _("Leads by source"),
-		"subtitle": _("Lead generation channel analysis"),
+		"title": "Leads por fonte",
+		"subtitle": "Análise de canais de geração de leads",
 		"categoryColumn": "source",
 		"valueColumn": "count",
 	}
@@ -1015,8 +1015,8 @@ def get_deals_by_source(from_date="", to_date="", user=""):
 
 	return {
 		"data": result or [],
-		"title": _("Deals by source"),
-		"subtitle": _("Deal generation channel analysis"),
+		"title": "Negócios por fonte",
+		"subtitle": "Análise de canais de geração de negócios",
 		"categoryColumn": "source",
 		"valueColumn": "count",
 	}
@@ -1061,18 +1061,18 @@ def get_deals_by_territory(from_date="", to_date="", user=""):
 
 	return {
 		"data": result or [],
-		"title": _("Deals by territory"),
-		"subtitle": _("Geographic distribution of deals and revenue"),
+		"title": "Negócios por território",
+		"subtitle": "Distribuição geográfica de negócios e receita",
 		"xAxis": {
-			"title": _("Territory"),
+			"title": "Território",
 			"key": "territory",
 			"type": "category",
 		},
 		"yAxis": {
-			"title": _("Number of deals"),
+			"title": "Número de negócios",
 		},
 		"y2Axis": {
-			"title": _("Deal value") + f" ({get_base_currency_symbol()})",
+			"title": "Valor do negócio" + f" ({get_base_currency_symbol()})",
 		},
 		"series": [
 			{"name": "deals", "type": "bar"},
@@ -1121,18 +1121,18 @@ def get_deals_by_salesperson(from_date="", to_date="", user=""):
 
 	return {
 		"data": result or [],
-		"title": _("Deals by salesperson"),
-		"subtitle": _("Number of deals and total value per salesperson"),
+		"title": "Negócios por vendedor",
+		"subtitle": "Número de negócios e valor total por vendedor",
 		"xAxis": {
-			"title": _("Salesperson"),
+			"title": "Vendedor",
 			"key": "salesperson",
 			"type": "category",
 		},
 		"yAxis": {
-			"title": _("Number of deals"),
+			"title": "Número de negócios",
 		},
 		"y2Axis": {
-			"title": _("Deal value") + f" ({get_base_currency_symbol()})",
+			"title": "Valor do negócio" + f" ({get_base_currency_symbol()})",
 		},
 		"series": [
 			{"name": "deals", "type": "bar"},
