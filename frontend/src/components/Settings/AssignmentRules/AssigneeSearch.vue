@@ -10,25 +10,25 @@
         />
       </template>
       <template #body="{ togglePopover }">
-        <div class="mt-1 rounded-lg bg-white py-1 text-base shadow-2xl w-60">
+        <div class="bg-white shadow-2xl mt-1 py-1 rounded-lg w-60 text-base">
           <div class="relative px-1.5 pt-0.5">
             <ComboboxInput
               ref="search"
-              class="form-input w-full"
+              class="w-full form-input"
               type="text"
               @change="(e) => debouncedQuery(e.target.value)"
               :value="query"
               autocomplete="off"
-              :placeholder="__('Search')"
+              placeholder="Buscar"
             />
             <button
-              class="absolute right-1.5 inline-flex h-7 w-7 items-center justify-center"
+              class="inline-flex right-1.5 absolute justify-center items-center w-7 h-7"
               @click="query = ''"
             >
               <FeatherIcon name="x" class="w-4" />
             </button>
           </div>
-          <ComboboxOptions class="my-2 max-h-64 overflow-y-auto px-1.5" static>
+          <ComboboxOptions class="my-2 px-1.5 max-h-64 overflow-y-auto" static>
             <ComboboxOption
               v-show="usersList.length > 0"
               v-for="user in usersList"
@@ -44,10 +44,10 @@
               "
             >
               <li
-                class="flex items-center rounded p-1.5 w-full text-base"
+                class="flex items-center p-1.5 rounded w-full text-base"
                 :class="{ 'bg-gray-100': active }"
               >
-                <div class="flex gap-2 items-center w-full select-none">
+                <div class="flex items-center gap-2 w-full select-none">
                   <Avatar
                     :shape="'circle'"
                     :image="user.user_image"
@@ -65,12 +65,12 @@
             </ComboboxOption>
             <li
               v-if="usersList.length == 0"
-              class="mt-1.5 rounded-md p-1.5 text-base text-gray-600"
+              class="mt-1.5 p-1.5 rounded-md text-gray-600 text-base"
             >
               {{ __('No results found') }}
             </li>
           </ComboboxOptions>
-          <div class="border-t p-1.5 pb-0.5 *:w-full">
+          <div class="p-1.5 pb-0.5 border-t *:w-full">
             <Button
               variant="ghost"
               icon-left="plus"

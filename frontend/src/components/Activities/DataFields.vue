@@ -1,13 +1,13 @@
 <template>
   <div
-    class="my-3 flex items-center justify-between text-lg font-medium sm:mb-4 sm:mt-8"
+    class="flex justify-between items-center my-3 sm:mt-8 sm:mb-4 font-medium text-lg"
   >
-    <div class="flex h-8 items-center text-xl font-semibold text-ink-gray-8">
+    <div class="flex items-center h-8 font-semibold text-ink-gray-8 text-xl">
       {{ __('Data') }}
       <Badge
         v-if="document.isDirty"
         class="ml-3"
-        :label="'Not Saved'"
+        label="Não Salvo"
         theme="orange"
       />
     </div>
@@ -19,7 +19,7 @@
         @click="showDataFieldsModal = true"
       />
       <Button
-        label="Save"
+        label="Salvar"
         :disabled="!document.isDirty"
         variant="solid"
         :loading="document.save.loading"
@@ -29,9 +29,9 @@
   </div>
   <div
     v-if="document.get.loading"
-    class="flex flex-1 flex-col items-center justify-center gap-3 text-xl font-medium text-ink-gray-6"
+    class="flex flex-col flex-1 justify-center items-center gap-3 font-medium text-ink-gray-6 text-xl"
   >
-    <LoadingIndicator class="h-6 w-6" />
+    <LoadingIndicator class="w-6 h-6" />
     <span>{{ __('Loading...') }}</span>
   </div>
   <div v-else class="pb-8">

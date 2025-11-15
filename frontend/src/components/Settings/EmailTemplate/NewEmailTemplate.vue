@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full flex-col gap-6 p-8 text-ink-gray-8">
+  <div class="flex flex-col gap-6 p-8 h-full text-ink-gray-8">
     <!-- Header -->
     <div class="flex justify-between">
       <div class="flex gap-1 -ml-4 w-9/12">
@@ -7,17 +7,17 @@
           variant="ghost"
           icon-left="chevron-left"
           :label="
-            templateData?.name ? __('Duplicate template') : __('New template')
+            templateData?.name ? 'Template duplicado' : 'Novo template'
           "
           size="md"
           @click="() => emit('updateStep', 'template-list')"
-          class="cursor-pointer hover:bg-transparent focus:bg-transparent focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:none active:bg-transparent active:outline-none active:ring-0 active:ring-offset-0 active:text-ink-gray-5 font-semibold text-xl hover:opacity-70 !pr-0 !max-w-96 !justify-start"
+          class="!justify-start hover:bg-transparent focus:bg-transparent active:bg-transparent hover:opacity-70 !pr-0 focus:outline-none active:outline-none focus:ring-0 active:ring-0 focus:ring-offset-0 active:ring-offset-0 !max-w-96 font-semibold active:text-ink-gray-5 text-xl cursor-pointer focus-visible:none"
         />
       </div>
-      <div class="flex item-center space-x-4 w-3/12 justify-end">
+      <div class="flex justify-end space-x-4 w-3/12 item-center">
         <div class="flex items-center space-x-2">
           <Switch size="sm" v-model="template.enabled" />
-          <span class="text-sm text-ink-gray-7">{{ __('Enabled') }}</span>
+          <span class="text-ink-gray-7 text-sm">{{ __('Enabled') }}</span>
         </div>
         <Button
           :label="templateData?.name ? __('Duplicate') : __('Create')"
@@ -29,13 +29,13 @@
     </div>
 
     <!-- Fields -->
-    <div class="flex flex-1 flex-col gap-4 overflow-y-auto">
+    <div class="flex flex-col flex-1 gap-4 overflow-y-auto">
       <div class="flex sm:flex-row flex-col gap-4">
         <div class="flex-1">
           <FormControl
             size="md"
             v-model="template.name"
-            :placeholder="__('Payment Reminder')"
+            placeholder="Documentos para aprovação"
             :label="__('Name')"
             :required="true"
           />
@@ -47,10 +47,6 @@
             v-model="template.reference_doctype"
             :label="__('For')"
             :options="[
-              {
-                label: __('Deal'),
-                value: 'CRM Deal',
-              },
               {
                 label: __('Lead'),
                 value: 'CRM Lead',
@@ -66,11 +62,11 @@
           size="md"
           v-model="template.subject"
           :label="__('Subject')"
-          :placeholder="__('Payment Reminder from Frappé - (#{{ name }})')"
+          :placeholder="__('Documentos para aprovação - (#{{ name }})')"
           :required="true"
         />
       </div>
-      <div class="border-t pt-4">
+      <div class="pt-4 border-t">
         <FormControl
           type="select"
           size="md"
@@ -91,14 +87,10 @@
           ref="content"
           :rows="10"
           v-model="template.response_html"
-          :placeholder="
-            __(
-              '<p>Dear {{ lead_name }},</p>\n\n<p>This is a reminder for the payment of {{ grand_total }}.</p>\n\n<p>Thanks,</p>\n<p>Frappé</p>',
-            )
-          "
+          placeholder="<p>Ola {{ lead_name }},</p>\n\n<p>Por favor envie os documentos necessários para continuar a aprovação.</p>\n\n<p>Obrigado,</p>\n<p>CCI</p>"
         />
         <div v-else>
-          <div class="mb-1.5 text-base text-ink-gray-5">
+          <div class="mb-1.5 text-ink-gray-5 text-base">
             {{ __('Content') }}
             <span class="text-ink-red-3">*</span>
           </div>

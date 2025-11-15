@@ -1,23 +1,23 @@
 <template>
-  <div class="flex h-full flex-col gap-6 p-8">
+  <div class="flex flex-col gap-6 p-8 h-full">
     <div class="flex justify-between">
       <div class="flex flex-col gap-1 w-9/12">
         <h2
-          class="flex gap-2 text-xl font-semibold leading-none h-5 text-ink-gray-8"
+          class="flex gap-2 h-5 font-semibold text-ink-gray-8 text-xl leading-none"
         >
           {{ __('Telephony settings') }}
           <Badge
             v-if="twilio.isDirty || exotel.isDirty || mediumChanged"
-            :label="__('Not Saved')"
+            label="Não Salvo"
             variant="subtle"
             theme="orange"
           />
         </h2>
-        <p class="text-p-base text-ink-gray-6">
+        <p class="text-ink-gray-6 text-p-base">
           {{ __('Configure telephony settings for your CRM') }}
         </p>
       </div>
-      <div class="flex item-center space-x-2 w-3/12 justify-end">
+      <div class="flex justify-end space-x-2 w-3/12 item-center">
         <Button
           :loading="twilio.save.loading || exotel.save.loading"
           :label="__('Update')"
@@ -28,7 +28,7 @@
     </div>
     <div
       v-if="!twilio.get.loading || !exotel.get.loading"
-      class="flex-1 flex flex-col gap-8 overflow-y-auto"
+      class="flex flex-col flex-1 gap-8 overflow-y-auto"
     >
       <!-- General -->
       <FormControl
@@ -46,7 +46,7 @@
 
       <!-- Twilio -->
       <div v-if="isManager()" class="flex flex-col justify-between gap-4">
-        <span class="text-base font-semibold text-ink-gray-8">
+        <span class="font-semibold text-ink-gray-8 text-base">
           {{ __('Twilio') }}
         </span>
         <FieldLayout
@@ -59,7 +59,7 @@
 
       <!-- Exotel -->
       <div v-if="isManager()" class="flex flex-col justify-between gap-4">
-        <span class="text-base font-semibold text-ink-gray-8">
+        <span class="font-semibold text-ink-gray-8 text-base">
           {{ __('Exotel') }}
         </span>
         <FieldLayout
@@ -70,7 +70,7 @@
         />
       </div>
     </div>
-    <div v-else class="flex flex-1 items-center justify-center">
+    <div v-else class="flex flex-1 justify-center items-center">
       <Spinner class="size-8" />
     </div>
     <ErrorMessage :message="twilio.save.error || exotel.save.error || error" />

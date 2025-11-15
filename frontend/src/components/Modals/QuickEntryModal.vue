@@ -7,7 +7,7 @@
         <div>{{ __('Edit Quick Entry Layout') }}</div>
         <Badge
           v-if="dirty"
-          :label="__('Not Saved')"
+          label="Não Salvo"
           variant="subtle"
           theme="orange"
         />

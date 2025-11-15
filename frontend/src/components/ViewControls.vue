@@ -218,7 +218,7 @@
           ]"
         >
           <template #default>
-            <Button :tooltip="__('More Options')" icon="more-horizontal" />
+            <Button tooltip="Mais Opções" icon="more-horizontal" />
           </template>
         </Dropdown>
       </div>
@@ -279,7 +279,7 @@
       <div class="mt-3">
         <FormControl
           type="checkbox"
-          :label="__('Export All {0} Record(s)', [list.data.total_count])"
+          :label="'Exportar todos os ' + list.data.total_count + ' registros'"
           v-model="export_all"
         />
       </div>

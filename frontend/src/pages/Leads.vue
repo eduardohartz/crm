@@ -85,7 +85,7 @@
           />
         </div>
         <div v-else-if="titleField === 'mobile_no'">
-          <PhoneIcon class="h-4 w-4" />
+          <PhoneIcon class="w-4 h-4" />
         </div>
         <div
           v-if="
@@ -97,13 +97,13 @@
               'response_by',
             ].includes(titleField)
           "
-          class="truncate text-base"
+          class="text-base truncate"
         >
           <Tooltip :text="getRow(itemName, titleField).label">
             <div>{{ getRow(itemName, titleField).timeAgo }}</div>
           </Tooltip>
         </div>
-        <div v-else-if="titleField === 'sla_status'" class="truncate text-base">
+        <div v-else-if="titleField === 'sla_status'" class="text-base truncate">
           <Badge
             v-if="getRow(itemName, titleField).value"
             :variant="'subtle'"
@@ -114,7 +114,7 @@
         </div>
         <div
           v-else-if="getRow(itemName, titleField).label"
-          class="truncate text-base"
+          class="text-base truncate"
         >
           {{ getRow(itemName, titleField).label }}
         </div>
@@ -124,7 +124,7 @@
     <template #fields="{ fieldName, itemName }">
       <div
         v-if="getRow(itemName, fieldName).label"
-        class="truncate flex items-center gap-2"
+        class="flex items-center gap-2 truncate"
       >
         <div v-if="fieldName === 'status'">
           <IndicatorIcon :class="getRow(itemName, fieldName).color" />
@@ -169,13 +169,13 @@
               'response_by',
             ].includes(fieldName)
           "
-          class="truncate text-base"
+          class="text-base truncate"
         >
           <Tooltip :text="getRow(itemName, fieldName).label">
             <div>{{ getRow(itemName, fieldName).timeAgo }}</div>
           </Tooltip>
         </div>
-        <div v-else-if="fieldName === 'sla_status'" class="truncate text-base">
+        <div v-else-if="fieldName === 'sla_status'" class="text-base truncate">
           <Badge
             v-if="getRow(itemName, fieldName).value"
             :variant="'subtle'"
@@ -190,30 +190,30 @@
             size="xs"
           />
         </div>
-        <div v-else class="truncate text-base">
+        <div v-else class="text-base truncate">
           {{ getRow(itemName, fieldName).label }}
         </div>
       </div>
     </template>
     <template #actions="{ itemName }">
-      <div class="flex gap-2 items-center justify-between">
-        <div class="text-ink-gray-5 flex items-center gap-1.5">
-          <EmailAtIcon class="h-4 w-4" />
+      <div class="flex justify-between items-center gap-2">
+        <div class="flex items-center gap-1.5 text-ink-gray-5">
+          <EmailAtIcon class="w-4 h-4" />
           <span v-if="getRow(itemName, '_email_count').label">
             {{ getRow(itemName, '_email_count').label }}
           </span>
           <span class="text-3xl leading-[0]"> &middot; </span>
-          <NoteIcon class="h-4 w-4" />
+          <NoteIcon class="w-4 h-4" />
           <span v-if="getRow(itemName, '_note_count').label">
             {{ getRow(itemName, '_note_count').label }}
           </span>
           <span class="text-3xl leading-[0]"> &middot; </span>
-          <TaskIcon class="h-4 w-4" />
+          <TaskIcon class="w-4 h-4" />
           <span v-if="getRow(itemName, '_task_count').label">
             {{ getRow(itemName, '_task_count').label }}
           </span>
           <span class="text-3xl leading-[0]"> &middot; </span>
-          <CommentIcon class="h-4 w-4" />
+          <CommentIcon class="w-4 h-4" />
           <span v-if="getRow(itemName, '_comment_count').label">
             {{ getRow(itemName, '_comment_count').label }}
           </span>
@@ -252,14 +252,14 @@
       (selections) => viewControls.updateSelections(selections)
     "
   />
-  <div v-else-if="leads.data" class="flex h-full items-center justify-center">
+  <div v-else-if="leads.data" class="flex justify-center items-center h-full">
     <div
-      class="flex flex-col items-center gap-3 text-xl font-medium text-ink-gray-4"
+      class="flex flex-col items-center gap-3 font-medium text-ink-gray-4 text-xl"
     >
-      <LeadsIcon class="h-10 w-10" />
-      <span>{{ __('No {0} Found', [__('Leads')]) }}</span>
+      <LeadsIcon class="w-10 h-10" />
+      <span>Nenhum Lead encontrado</span>
       <Button
-        :label="__('Create')"
+        label="Criar"
         iconLeft="plus"
         @click="showLeadModal = true"
       />

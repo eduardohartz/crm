@@ -43,7 +43,7 @@ export function useDocument(doctype, docname, resourceOverrides = {}) {
           validate,
           onSuccess: () => {
             triggerOnSave()
-            toast.success(__('Document updated successfully'))
+            toast.success('Documento atualizado com sucesso')
           },
           onError: (err) => {
             triggerOnError(err)
@@ -70,7 +70,7 @@ export function useDocument(doctype, docname, resourceOverrides = {}) {
             console.error(err)
           },
         },
-        ...resourceOverrides
+        ...resourceOverrides,
       })
     } else {
       documentsCache[doctype][''] = reactive({

@@ -10,7 +10,7 @@
         >
           <template v-if="filters?.size" #suffix>
             <div
-              class="flex h-5 w-5 items-center justify-center rounded-[5px] bg-surface-white pt-px text-xs font-medium text-ink-gray-8 shadow-sm"
+              class="flex justify-center items-center bg-surface-white shadow-sm pt-px rounded-[5px] w-5 h-5 font-medium text-ink-gray-8 text-xs"
             >
               {{ filters.size }}
             </div>
@@ -19,7 +19,7 @@
         <Button
           v-if="filters?.size"
           :tooltip="__('Clear all Filter')"
-          class="rounded-l-none border-l"
+          class="border-l rounded-l-none"
           icon="x"
           @click.stop="clearfilter(close)"
         />
@@ -27,9 +27,9 @@
     </template>
     <template #body="{ close }">
       <div
-        class="my-2 min-w-40 rounded-lg bg-surface-modal shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
+        class="bg-surface-modal ring-opacity-5 shadow-2xl my-2 rounded-lg focus:outline-none ring-1 ring-black min-w-40"
       >
-        <div class="min-w-72 p-2 sm:min-w-[400px]">
+        <div class="p-2 min-w-72 sm:min-w-[400px]">
           <div
             v-if="filters?.size"
             v-for="(f, i) in filters"
@@ -38,8 +38,8 @@
             class="mb-4 sm:mb-3"
           >
             <div v-if="isMobileView" class="flex flex-col gap-2">
-              <div class="-mb-2 flex w-full items-center justify-between">
-                <div class="text-base text-ink-gray-5">
+              <div class="flex justify-between items-center -mb-2 w-full">
+                <div class="text-ink-gray-5 text-base">
                   {{ i == 0 ? __('Where') : __('And') }}
                 </div>
                 <Button
@@ -75,9 +75,9 @@
                 />
               </div>
             </div>
-            <div v-else class="flex items-center justify-between gap-2">
+            <div v-else class="flex justify-between items-center gap-2">
               <div class="flex items-center gap-2">
-                <div class="w-13 pl-2 text-end text-base text-ink-gray-5">
+                <div class="pl-2 w-13 text-ink-gray-5 text-base text-end">
                   {{ i == 0 ? __('Where') : __('And') }}
                 </div>
                 <div id="fieldname" class="!min-w-[140px]">
@@ -118,11 +118,11 @@
           </div>
           <div
             v-else
-            class="mb-3 flex h-7 items-center px-3 text-sm text-ink-gray-5"
+            class="flex items-center mb-3 px-3 h-7 text-ink-gray-5 text-sm"
           >
-            {{ __('Empty - Choose a field to filter by') }}
+            Vazio - Escolha um campo para filtrar
           </div>
-          <div class="flex items-center justify-between gap-2">
+          <div class="flex justify-between items-center gap-2">
             <Autocomplete
               value=""
               :options="availableFilters"

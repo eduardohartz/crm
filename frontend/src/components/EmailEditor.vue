@@ -41,7 +41,7 @@
               ]"
             />
             <Button
-              :label="__('BCC')"
+              :label="'CCo'"
               variant="ghost"
               @click="toggleBCC()"
               :class="[

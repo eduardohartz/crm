@@ -12,7 +12,7 @@
     </template>
     <template #body="{ close }">
       <div
-        class="my-2 p-1.5 min-w-40 rounded-lg bg-surface-modal shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
+        class="bg-surface-modal ring-opacity-5 shadow-2xl my-2 p-1.5 rounded-lg focus:outline-none ring-1 ring-black min-w-40"
       >
         <div v-if="!edit">
           <Draggable
@@ -24,16 +24,16 @@
           >
             <template #item="{ element }">
               <div
-                class="flex cursor-grab items-center justify-between gap-6 rounded px-2 py-1.5 text-base text-ink-gray-8 hover:bg-surface-gray-2"
+                class="flex justify-between items-center gap-6 hover:bg-surface-gray-2 px-2 py-1.5 rounded text-ink-gray-8 text-base cursor-grab"
               >
                 <div class="flex items-center gap-2">
                   <DragIcon class="h-3.5" />
                   <div>{{ __(element.label) }}</div>
                 </div>
-                <div class="flex cursor-pointer items-center gap-0.5">
+                <div class="flex items-center gap-0.5 cursor-pointer">
                   <Button
                     variant="ghost"
-                    class="!h-5 w-5 !p-1"
+                    class="!p-1 w-5 !h-5"
                     @click="editColumn(element)"
                   >
                     <template #icon>
@@ -42,7 +42,7 @@
                   </Button>
                   <Button
                     variant="ghost"
-                    class="!h-5 w-5 !p-1"
+                    class="!p-1 w-5 !h-5"
                     @click="removeColumn(element)"
                   >
                     <template #icon>
@@ -54,7 +54,7 @@
             </template>
           </Draggable>
           <div
-            class="mt-1.5 flex flex-col gap-1 border-t border-outline-gray-modals pt-1.5"
+            class="flex flex-col gap-1 mt-1.5 pt-1.5 border-t border-outline-gray-modals"
           >
             <Autocomplete
               value=""
@@ -63,7 +63,7 @@
             >
               <template #target="{ togglePopover }">
                 <Button
-                  class="w-full !justify-start !text-ink-gray-5"
+                  class="!justify-start w-full !text-ink-gray-5"
                   variant="ghost"
                   :label="__('Add Column')"
                   iconLeft="plus"
@@ -73,7 +73,7 @@
             </Autocomplete>
             <Button
               v-if="columnsUpdated"
-              class="w-full !justify-start !text-ink-gray-5"
+              class="!justify-start w-full !text-ink-gray-5"
               variant="ghost"
               :label="__('Reset Changes')"
               :iconLeft="ReloadIcon"
@@ -81,9 +81,9 @@
             />
             <Button
               v-if="!is_default"
-              class="w-full !justify-start !text-ink-gray-5"
+              class="!justify-start w-full !text-ink-gray-5"
               variant="ghost"
-              :label="__('Reset to Default')"
+              label="Resetar para Padrão"
               :iconLeft="ReloadIcon"
               @click="resetToDefault(close)"
             />
@@ -91,7 +91,7 @@
         </div>
         <div v-else>
           <div
-            class="flex flex-col items-center justify-between gap-2 rounded px-2 py-1.5 text-base text-ink-gray-8"
+            class="flex flex-col justify-between items-center gap-2 px-2 py-1.5 rounded text-ink-gray-8 text-base"
           >
             <div class="flex flex-col items-center gap-3">
               <FormControl
@@ -99,14 +99,14 @@
                 size="md"
                 :label="__('Label')"
                 v-model="column.label"
-                class="sm:w-full w-52"
+                class="w-52 sm:w-full"
                 :placeholder="__('First Name')"
               />
               <FormControl
                 type="text"
                 size="md"
                 :label="__('Width')"
-                class="sm:w-full w-52"
+                class="w-52 sm:w-full"
                 v-model="column.width"
                 placeholder="10rem"
                 :description="
@@ -117,17 +117,17 @@
                 :debounce="500"
               />
             </div>
-            <div class="flex w-full gap-2 border-t pt-2">
+            <div class="flex gap-2 pt-2 border-t w-full">
               <Button
                 variant="subtle"
                 :label="__('Cancel')"
-                class="w-full flex-1"
+                class="flex-1 w-full"
                 @click="cancelUpdate"
               />
               <Button
                 variant="solid"
                 :label="__('Update')"
-                class="w-full flex-1"
+                class="flex-1 w-full"
                 @click="updateColumn(column)"
               />
             </div>

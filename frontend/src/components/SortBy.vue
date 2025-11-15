@@ -28,16 +28,16 @@
       >
         <template v-if="sortValues?.size" #suffix>
           <div
-            class="flex h-5 w-5 items-center justify-center rounded-[5px] bg-surface-white pt-px text-xs font-medium text-ink-gray-8 shadow-sm"
+            class="flex justify-center items-center bg-surface-white shadow-sm pt-px rounded-[5px] w-5 h-5 font-medium text-ink-gray-8 text-xs"
           >
             {{ sortValues.size }}
           </div>
         </template>
       </Button>
-      <div v-else class="flex items-center justify-center">
+      <div v-else class="flex justify-center items-center">
         <Button
           v-if="sortValues.size"
-          class="rounded-r-none border-r"
+          class="border-r rounded-r-none"
           :icon="
             Array.from(sortValues)[0].direction == 'asc'
               ? AscendingIcon
@@ -53,7 +53,7 @@
         />
         <Button
           :label="getSortLabel()"
-          class="shrink-0 [&_svg]:text-ink-gray-5"
+          class="[&_svg]:text-ink-gray-5 shrink-0"
           :iconLeft="!hideLabel && !sortValues?.size && SortIcon"
           :iconRight="
             sortValues?.size && (isOpen ? 'chevron-up' : 'chevron-down')
@@ -65,26 +65,26 @@
     </template>
     <template #body="{ close }">
       <div
-        class="my-2 min-w-40 rounded-lg bg-surface-modal shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
+        class="bg-surface-modal ring-opacity-5 shadow-2xl my-2 rounded-lg focus:outline-none ring-1 ring-black min-w-40"
       >
-        <div class="min-w-60 p-2">
+        <div class="p-2 min-w-60">
           <div
             v-if="sortValues?.size"
             id="sort-list"
-            class="mb-3 flex flex-col gap-2"
+            class="flex flex-col gap-2 mb-3"
           >
             <div
               v-for="(sort, i) in sortValues"
               :key="sort.fieldname"
               class="flex items-center gap-1"
             >
-              <div class="handle flex h-7 w-7 items-center justify-center">
-                <DragIcon class="h-4 w-4 cursor-grab text-ink-gray-5" />
+              <div class="flex justify-center items-center w-7 h-7 handle">
+                <DragIcon class="w-4 h-4 text-ink-gray-5 cursor-grab" />
               </div>
               <div class="flex flex-1">
                 <Button
                   size="md"
-                  class="rounded-r-none border-r"
+                  class="border-r rounded-r-none"
                   :icon="
                     sort.direction == 'asc' ? AscendingIcon : DesendingIcon
                   "
@@ -111,7 +111,7 @@
                     }"
                   >
                     <Button
-                      class="flex w-full items-center justify-between rounded-l-none !text-ink-gray-5"
+                      class="flex justify-between items-center rounded-l-none w-full !text-ink-gray-5"
                       size="md"
                       :label="displayValue(selectedValue)"
                       :iconRight="open ? 'chevron-down' : 'chevron-up'"
@@ -125,11 +125,11 @@
           </div>
           <div
             v-else
-            class="mb-3 flex h-7 items-center px-3 text-sm text-ink-gray-5"
+            class="flex items-center mb-3 px-3 h-7 text-ink-gray-5 text-sm"
           >
-            {{ __('Empty - Choose a field to sort by') }}
+            Vazio - Escolha um campo para filtrar
           </div>
-          <div class="flex items-center justify-between gap-2">
+          <div class="flex justify-between items-center gap-2">
             <Autocomplete
               :options="options"
               value=""

@@ -149,7 +149,7 @@ const tabs = computed(() => {
           condition: () => isManager(),
         },
         {
-          label: __('Email Templates'),
+          label: 'Templates de email',
           icon: EmailTemplateIcon,
           component: markRaw(EmailTemplatePage),
         },

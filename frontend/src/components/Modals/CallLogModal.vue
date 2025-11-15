@@ -7,7 +7,7 @@
             <h3 class="font-semibold text-ink-gray-9 text-2xl leading-6">
               {{ __(dialogOptions.title) || __('Untitled') }}
             </h3>
-            <Badge v-if="callLog.isDirty" :label="'Not Saved'" theme="orange" />
+            <Badge v-if="callLog.isDirty" label="Não Salvo" theme="orange" />
           </div>
           <div class="flex items-center gap-1">
             <Button
