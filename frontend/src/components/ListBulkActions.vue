@@ -180,14 +180,6 @@ function bulkActions(selections, unselectAll) {
   }
 
   if (!props.options.hideAssign) {
-    actions.push({
-      label: __('Assign To'),
-      onClick: () => assignValues(selections, unselectAll),
-    })
-    actions.push({
-      label: __('Clear Assignment'),
-      onClick: () => clearAssignemnts(selections, unselectAll),
-    })
   }
 
   if (props.doctype === 'CRM Lead' && false) {

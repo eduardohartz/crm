@@ -1,26 +1,5 @@
 <template>
   <Popover placement="bottom-end">
-    <template #target="{ togglePopover }">
-      <div class="flex items-center" @click="togglePopover">
-        <component
-          v-if="assignees?.length"
-          :is="assignees?.length == 1 ? 'Button' : 'div'"
-        >
-          <MultipleAvatar :avatars="assignees" />
-        </component>
-        <Button v-else :label="__('Assign to')" />
-      </div>
-    </template>
-    <template #body="{ isOpen }">
-      <AssignToBody
-        v-show="isOpen"
-        v-model="assignees"
-        :docname="docname"
-        :doctype="doctype"
-        :open="isOpen"
-        :onUpdate="ownerField && saveAssignees"
-      />
-    </template>
   </Popover>
 </template>
 <script setup>
