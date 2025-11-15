@@ -699,23 +699,23 @@ function update_activities_details(activity) {
 }
 
 const emptyText = computed(() => {
-  let text = 'No Activities'
+  let text = 'Nenhuma atividade'
   if (title.value == 'Emails') {
-    text = 'Nao encontrado nenhum email'
+    text = 'Nenhum email encontrado'
   } else if (title.value == 'Comments') {
-    text = 'Nao encontrado nenhum comentario'
+    text = 'Nenhum comentário encontrado'
   } else if (title.value == 'Data') {
-    text = 'Nao encontrado nenhum dado'
+    text = 'Nenhum dado encontrado'
   } else if (title.value == 'Calls') {
-    text = 'Nao encontrado nenhum registro de chamada'
+    text = 'Nenhuma chamada registrada'
   } else if (title.value == 'Notes') {
-    text = 'Nao encontrado nenhuma nota'
+    text = 'Nenhuma nota encontrada'
   } else if (title.value == 'Tasks') {
-    text = 'Nao encontrado nenhuma tarefa'
+    text = 'Nenhuma tarefa encontrada'
   } else if (title.value == 'Attachments') {
-    text = 'Nao encontrado nenhum anexo'
+    text = 'Nenhum anexo encontrado'
   } else if (title.value == 'WhatsApp') {
-    text = 'Nao encontrado nenhuma mensagem do WhatsApp'
+    text = 'Nenhuma mensagem do WhatsApp encontrada'
   }
   return text
 })

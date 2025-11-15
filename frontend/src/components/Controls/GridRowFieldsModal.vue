@@ -7,7 +7,7 @@
         <div>{{ __('Edit Grid Row Fields Layout') }}</div>
         <Badge
           v-if="dirty"
-          :label="__('Not Saved')"
+          label="Não Salvo"
           variant="subtle"
           theme="orange"
         />

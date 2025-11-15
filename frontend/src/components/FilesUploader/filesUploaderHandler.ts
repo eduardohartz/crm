@@ -74,7 +74,7 @@ class FilesUploadHandler {
             error = JSON.parse(xhr.responseText)
           } else if (xhr.status === 413) {
             this.failed = true
-            error = 'Size exceeds the maximum allowed file size.'
+            error = 'O tamanho excede o tamanho máximo permitido.'
           } else {
             this.failed = true
             try {

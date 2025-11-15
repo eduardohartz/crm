@@ -1,20 +1,20 @@
 <template>
-  <div class="flex h-full flex-col gap-6">
+  <div class="flex flex-col gap-6 h-full">
     <div class="flex justify-between">
       <div class="flex flex-col gap-1 w-9/12">
         <h2
-          class="flex gap-2 text-xl font-semibold leading-none h-5 text-ink-gray-8"
+          class="flex gap-2 h-5 font-semibold text-ink-gray-8 text-xl leading-none"
         >
           {{ title || __(doctype) }}
           <Badge
             v-if="data.isDirty"
-            :label="__('Not Saved')"
+            label="Não Salvo"
             variant="subtle"
             theme="orange"
           />
         </h2>
       </div>
-      <div class="flex item-center space-x-2 w-3/12 justify-end">
+      <div class="flex justify-end space-x-2 w-3/12 item-center">
         <Button
           :loading="data.save.loading"
           :label="__('Update')"
@@ -31,7 +31,7 @@
         :doctype="doctype"
       />
     </div>
-    <div v-else class="flex flex-1 items-center justify-center">
+    <div v-else class="flex flex-1 justify-center items-center">
       <Spinner class="size-8" />
     </div>
     <ErrorMessage :message="data.save.error" />

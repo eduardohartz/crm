@@ -25,7 +25,7 @@
         />
         <Button
           v-if="editing && isAdmin()"
-          :label="__('Reset to default')"
+          label="Resetar para Padrão"
           :iconLeft="LucideUndo2"
           @click="resetToDefault"
         />

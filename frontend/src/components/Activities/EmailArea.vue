@@ -1,13 +1,13 @@
 <template>
   <div
-    class="cursor-pointer flex flex-col rounded-md shadow bg-surface-cards px-3 py-1.5 text-base transition-all duration-300 ease-in-out"
+    class="flex flex-col bg-surface-cards shadow px-3 py-1.5 rounded-md text-base transition-all duration-300 ease-in-out cursor-pointer"
   >
     <div
-      class="-mb-0.5 flex items-center justify-between gap-2 truncate text-ink-gray-9"
+      class="flex justify-between items-center gap-2 -mb-0.5 text-ink-gray-9 truncate"
     >
       <div class="flex items-center gap-2 truncate">
         <span>{{ activity.data.sender_full_name }}</span>
-        <span class="sm:flex hidden text-sm text-ink-gray-5">
+        <span class="hidden sm:flex text-ink-gray-5 text-sm">
           {{ '<' + activity.data.sender + '>' }}
         </span>
         <Badge
@@ -25,7 +25,7 @@
           :theme="status.color"
         />
         <Tooltip :text="formatDate(activity.communication_date)">
-          <div class="text-sm text-ink-gray-5">
+          <div class="text-ink-gray-5 text-sm">
             {{ __(timeAgo(activity.communication_date)) }}
           </div>
         </Tooltip>
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-col gap-1 text-base leading-5 text-ink-gray-8">
+    <div class="flex flex-col gap-1 text-ink-gray-8 text-base leading-5">
       <div>{{ activity.data.subject }}</div>
       <div>
         <span class="mr-1 text-ink-gray-5"> {{ __('To') }}: </span>
@@ -59,12 +59,12 @@
         <span v-if="activity.data.cc">{{ activity.data.cc }}</span>
         <span v-if="activity.data.bcc">, </span>
         <span v-if="activity.data.bcc" class="mr-1 text-ink-gray-5">
-          {{ __('BCC') }}:
+          {{ 'CCo' }}:
         </span>
         <span v-if="activity.data.bcc">{{ activity.data.bcc }}</span>
       </div>
     </div>
-    <div class="border-0 border-t mt-3 mb-1 border-outline-gray-modals" />
+    <div class="mt-3 mb-1 border-0 border-t border-outline-gray-modals" />
     <EmailContent :content="activity.data.content" />
     <div v-if="activity.data?.attachments?.length" class="flex flex-wrap gap-2">
       <AttachmentItem

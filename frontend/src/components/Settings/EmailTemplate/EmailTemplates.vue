@@ -1,12 +1,12 @@
 <template>
-  <div class="flex h-full flex-col gap-6 p-6 text-ink-gray-8">
+  <div class="flex flex-col gap-6 p-6 h-full text-ink-gray-8">
     <!-- Header -->
     <div class="flex justify-between px-2 pt-2">
       <div class="flex flex-col gap-1 w-9/12">
-        <h2 class="flex gap-2 text-xl font-semibold leading-none h-5">
-          {{ __('Email templates') }}
+        <h2 class="flex gap-2 h-5 font-semibold text-xl leading-none">
+          Templates de email
         </h2>
-        <p class="text-p-base text-ink-gray-6">
+        <p class="text-ink-gray-6 text-p-base">
           {{
             __(
               'Add, edit, and manage email templates for various CRM communications',
@@ -14,7 +14,7 @@
           }}
         </p>
       </div>
-      <div class="flex item-center space-x-2 w-3/12 justify-end">
+      <div class="flex justify-end space-x-2 w-3/12 item-center">
         <Button
           :label="__('New')"
           icon-left="plus"
@@ -27,7 +27,7 @@
     <!-- loading state -->
     <div
       v-if="templates.loading"
-      class="flex mt-28 justify-between w-full h-full"
+      class="flex justify-between mt-28 w-full h-full"
     >
       <Button
         :loading="templates.loading"
@@ -43,9 +43,9 @@
       class="flex justify-between w-full h-full"
     >
       <div
-        class="text-ink-gray-4 border border-dashed rounded w-full flex items-center justify-center"
+        class="flex justify-center items-center border border-dashed rounded w-full text-ink-gray-4"
       >
-        {{ __('No email templates found') }}
+        Nenhum template de email encontrado.
       </div>
     </div>
 
@@ -56,7 +56,7 @@
     >
       <div
         v-if="templates.data?.length > 10"
-        class="flex items-center justify-between mb-4 px-2 pt-0.5"
+        class="flex justify-between items-center mb-4 px-2 pt-0.5"
       >
         <TextInput
           ref="searchRef"
@@ -66,7 +66,7 @@
           :debounce="300"
         >
           <template #prefix>
-            <FeatherIcon name="search" class="h-4 w-4 text-ink-gray-6" />
+            <FeatherIcon name="search" class="w-4 h-4 text-ink-gray-6" />
           </template>
         </TextInput>
         <FormControl
@@ -79,30 +79,30 @@
           ]"
         />
       </div>
-      <div class="flex items-center py-2 px-4 text-sm text-ink-gray-5">
+      <div class="flex items-center px-4 py-2 text-ink-gray-5 text-sm">
         <div class="w-4/6">{{ __('Template name') }}</div>
         <div class="w-1/6">{{ __('For') }}</div>
         <div class="w-1/6">{{ __('Enabled') }}</div>
       </div>
-      <div class="h-px border-t mx-4 border-outline-gray-modals" />
-      <ul class="overflow-y-auto px-2">
+      <div class="mx-4 border-t border-outline-gray-modals h-px" />
+      <ul class="px-2 overflow-y-auto">
         <template v-for="(template, i) in templatesList" :key="template.name">
           <li
-            class="flex items-center justify-between p-3 cursor-pointer hover:bg-surface-menu-bar rounded"
+            class="flex justify-between items-center hover:bg-surface-menu-bar p-3 rounded cursor-pointer"
             @click="() => emit('updateStep', 'edit-template', { ...template })"
           >
-            <div class="flex flex-col w-4/6 pr-5">
-              <div class="text-p-base font-medium text-ink-gray-7 truncate">
+            <div class="flex flex-col pr-5 w-4/6">
+              <div class="font-medium text-ink-gray-7 text-p-base truncate">
                 {{ template.name }}
               </div>
-              <div class="text-p-sm text-ink-gray-5 truncate">
+              <div class="text-ink-gray-5 text-p-sm truncate">
                 {{ template.subject }}
               </div>
             </div>
-            <div class="text-base text-ink-gray-6 w-1/6">
+            <div class="w-1/6 text-ink-gray-6 text-base">
               {{ template.reference_doctype.replace('CRM ', '') }}
             </div>
-            <div class="flex items-center justify-between w-1/6">
+            <div class="flex justify-between items-center w-1/6">
               <Switch
                 size="sm"
                 v-model="template.enabled"
@@ -127,7 +127,7 @@
           </li>
           <div
             v-if="templatesList.length !== i + 1"
-            class="h-px border-t mx-2 border-outline-gray-modals"
+            class="mx-2 border-t border-outline-gray-modals h-px"
           />
         </template>
         <!-- Load More Button -->

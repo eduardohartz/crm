@@ -1,7 +1,7 @@
 <template>
-  <div class="flex h-full flex-col gap-6 p-8 text-ink-gray-8">
-    <div class="flex-1 flex flex-col gap-6 mt-2 overflow-y-auto">
-      <div v-if="profile" class="flex w-full items-center justify-between">
+  <div class="flex flex-col gap-6 p-8 h-full text-ink-gray-8">
+    <div class="flex flex-col flex-1 gap-6 mt-2 overflow-y-auto">
+      <div v-if="profile" class="flex justify-between items-center w-full">
         <FileUploader
           @success="(file) => updateImage(file.file_url)"
           :validateFile="validateIsImageFile"
@@ -36,24 +36,24 @@
                         }
                       : { onClick: openFileSelector }
                   "
-                  class="!absolute bottom-0 left-0 right-0"
+                  class="right-0 bottom-0 left-0 !absolute"
                 >
                   <div
-                    class="z-1 absolute bottom-0.5 left-0 right-0.5 flex h-9 cursor-pointer items-center justify-center rounded-b-full bg-black bg-opacity-40 pt-3 opacity-0 duration-300 ease-in-out group-hover:opacity-100"
+                    class="right-0.5 bottom-0.5 left-0 z-1 absolute flex justify-center items-center bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 pt-3 rounded-b-full h-9 duration-300 ease-in-out cursor-pointer"
                     style="
                       -webkit-clip-path: inset(12px 0 0 0);
                       clip-path: inset(12px 0 0 0);
                     "
                   >
-                    <CameraIcon class="size-4 cursor-pointer text-white" />
+                    <CameraIcon class="size-4 text-white cursor-pointer" />
                   </div>
                 </component>
               </div>
               <div class="flex flex-col gap-1">
-                <span class="text-2xl font-semibold text-ink-gray-8">
+                <span class="font-semibold text-ink-gray-8 text-2xl">
                   {{ profile.full_name }}
                 </span>
-                <span class="text-base text-ink-gray-7">
+                <span class="text-ink-gray-7 text-base">
                   {{ profile.email }}
                 </span>
                 <ErrorMessage :message="__(_error)" />
@@ -61,26 +61,17 @@
             </div>
           </template>
         </FileUploader>
-        <Button
-          :label="__('Change Password')"
-          icon-left="lock"
-          @click="showChangePasswordModal = true"
-        />
-        <ChangePasswordModal
-          v-if="showChangePasswordModal"
-          v-model="showChangePasswordModal"
-        />
       </div>
       <div class="flex flex-col gap-4">
         <div class="flex justify-between gap-4">
           <FormControl
             class="w-full"
-            :label="__('First name')"
+            label="Nome"
             v-model="profile.first_name"
           />
           <FormControl
             class="w-full"
-            :label="__('Last name')"
+            label="Sobrenome"
             v-model="profile.last_name"
           />
         </div>
