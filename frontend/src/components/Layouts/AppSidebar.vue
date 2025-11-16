@@ -73,20 +73,6 @@
     </div>
     <div class="flex flex-col gap-1 m-2">
       <div class="flex flex-col gap-2 mb-1">
-        <SignupBanner
-          v-if="isDemoSite"
-          :isSidebarCollapsed="isSidebarCollapsed"
-          :afterSignup="() => capture('signup_from_demo_site')"
-        />
-        <TrialBanner
-          v-if="isFCSite"
-          :isSidebarCollapsed="isSidebarCollapsed"
-          :afterUpgrade="() => capture('upgrade_plan_from_trial_banner')"
-        />
-        <GettingStartedBanner
-          v-if="!isOnboardingStepsCompleted"
-          :isSidebarCollapsed="isSidebarCollapsed"
-        />
       </div>
       <SidebarLink
         :label="isSidebarCollapsed ? __('Expand') : __('Collapse')"
